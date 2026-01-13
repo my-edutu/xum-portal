@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
       <div className="container max-w-6xl mx-auto text-center relative z-10">
         <div className="flex justify-center -space-x-3 mb-10 opacity-0 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
-          {[1, 2, 3, 4, 5].map((i) => (
+          {[1, 2, 3].map((i) => (
             <img
               key={i}
               src={`https://i.pravatar.cc/100?img=${i + 30}`}

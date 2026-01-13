@@ -14,6 +14,7 @@ import Marketplace from './pages/Marketplace';
 import SettingsPage from './pages/Settings';
 import FAQPage from './pages/FAQPage';
 import NewWorkspaceModal from './components/NewWorkspaceModal';
+import ScrollToTop from './components/ScrollToTop';
 import { supabase } from './supabaseClient';
 import {
     LayoutDashboard,
@@ -332,6 +333,7 @@ function SidebarItem({ icon, label, active = false, onClick, className = "", col
 export default function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <ClerkProvider>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />

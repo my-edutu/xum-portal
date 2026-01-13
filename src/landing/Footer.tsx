@@ -20,35 +20,30 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-start gap-12 mb-16">
           <div className="max-w-xs">
-            <Link className="flex items-center gap-2 mb-6" to="/">
-              <span className="font-black text-3xl tracking-tighter uppercase text-white heading-font">XUM AI</span>
+            <Link className="flex items-center gap-2 mb-4" to="/">
+              <span className="font-semibold text-2xl tracking-tighter text-white heading-font">XUM AI</span>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed font-black opacity-60">
-              BUILDING THE WORLD'S LARGEST ETHICAL HUMAN INTELLIGENCE NETWORK.
+            <p className="text-slate-400 text-xs leading-relaxed opacity-60">
+              building the world's largest ethical human intelligence network.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-20">
-            <div className="flex flex-col gap-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Ecosystem</h4>
-              <Link className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" to="/waitlist">Waitlist</Link>
-              <Link className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors uppercase tracking-widest" to="/business">Business</Link>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>API Docs</a>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-20">
+            <div className="flex flex-col gap-2">
+              <h4 className="text-[11px] font-medium text-white/40 mb-1">ecosystem</h4>
+              <Link className="text-xs text-slate-400 hover:text-blue-500 transition-colors" to="/waitlist">waitlist</Link>
+              <Link className="text-xs text-slate-400 hover:text-orange-500 transition-colors" to="/business">business</Link>
+              <a className="text-xs text-slate-400 hover:text-blue-500 transition-colors" href="#" onClick={handleComingSoon}>api docs</a>
             </div>
-            <div className="flex flex-col gap-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Support</h4>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>Privacy</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>Support</a>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-[11px] font-medium text-white/40 mb-1">support</h4>
+              <a className="text-xs text-slate-400 hover:text-blue-500 transition-colors" href="#" onClick={handleComingSoon}>privacy</a>
+              <a className="text-xs text-slate-400 hover:text-blue-500 transition-colors" href="#" onClick={handleComingSoon}>support</a>
             </div>
-            <div className="flex flex-col gap-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Company</h4>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>About</a>
-              <Link
-                to="/auth?intent=admin"
-                className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors uppercase tracking-widest text-left"
-              >
-                Admin
-              </Link>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-[11px] font-medium text-white/40 mb-1">company</h4>
+              <a className="text-xs text-slate-400 hover:text-blue-500 transition-colors" href="#" onClick={handleComingSoon}>about</a>
+              <Link to="/auth?intent=admin" className="text-xs text-slate-400 hover:text-orange-500 transition-colors">admin</Link>
             </div>
           </div>
         </div>

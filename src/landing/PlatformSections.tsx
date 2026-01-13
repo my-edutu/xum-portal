@@ -1,7 +1,9 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PlatformSections: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="py-16 md:py-20 bg-white/[0.01] border-y border-white/5">
@@ -29,7 +31,12 @@ const PlatformSections: React.FC = () => {
                 </li>
               </ul>
 
-              <button className="btn-base btn-primary btn-lg w-full">Start Project</button>
+              <button
+                onClick={() => navigate('/business')}
+                className="btn-base btn-primary btn-lg w-full"
+              >
+                Start project
+              </button>
             </div>
 
             {/* App Card */}
@@ -49,7 +56,12 @@ const PlatformSections: React.FC = () => {
                 </li>
               </ul>
 
-              <button className="btn-base btn-secondary btn-lg w-full">Download App</button>
+              <button
+                onClick={() => navigate('/waitlist')}
+                className="btn-base btn-secondary btn-lg w-full"
+              >
+                Download app
+              </button>
             </div>
           </div>
         </div>

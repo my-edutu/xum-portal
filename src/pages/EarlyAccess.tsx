@@ -101,7 +101,7 @@ const EarlyAccess: React.FC = () => {
                             <Sparkles className="w-4 h-4 text-blue-400" />
                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Waitlist v2.0 Live</span>
                         </div>
-                        <h1 className="text-6xl md:text-8xl font-black text-white mb-8 leading-[0.85] outfit tracking-tighter">
+                        <h1 className="text-6xl md:text-8xl font-semibold text-white mb-8 leading-[0.85] outfit tracking-tighter">
                             Secure your spot in the <span className="text-blue-500">Network.</span>
                         </h1>
                         <p className="text-xl text-slate-400 leading-relaxed mb-12 max-w-lg">
@@ -121,19 +121,19 @@ const EarlyAccess: React.FC = () => {
                     </div>
 
                     <div className="relative animate-in fade-in slide-in-from-right-8 duration-1000">
-                        <div className="bg-white/[0.02] border border-white/10 p-8 md:p-12 rounded-[3.5rem] backdrop-blur-3xl relative shadow-3xl">
+                        <div className="bg-white/[0.02] border border-white/10 p-6 md:p-10 rounded-[2.5rem] backdrop-blur-3xl relative shadow-3xl w-full max-w-xl mx-auto">
                             {error && (
                                 <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-500 text-xs font-bold uppercase tracking-widest text-center animate-in shake duration-500">
                                     {error}
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit} className="space-y-8">
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Interested In</label>
+                            <form onSubmit={handleSubmit} className="space-y-5">
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">interested in</label>
                                     <div className="relative group">
                                         <select
-                                            className="w-full bg-black/40 border border-white/10 rounded-2xl py-5 px-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm appearance-none cursor-pointer"
+                                            className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base appearance-none cursor-pointer"
                                             value={formData.interest}
                                             onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                                         >
@@ -146,43 +146,43 @@ const EarlyAccess: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Full Name</label>
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">full name</label>
                                     <div className="relative group">
                                         <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
                                         <input
                                             required
                                             type="text"
-                                            placeholder="Your identity"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm"
+                                            placeholder="your identity"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base"
                                             value={formData.full_name}
                                             onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Email Address</label>
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">email address</label>
                                     <div className="relative group">
                                         <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
                                         <input
                                             required
                                             type="email"
                                             placeholder="name@domain.com"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base"
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Country</label>
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">country</label>
                                     <div className="relative group">
                                         <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
                                         <select
                                             required
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-12 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm appearance-none cursor-pointer"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-14 pr-12 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base appearance-none cursor-pointer"
                                             value={formData.country}
                                             onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                                         >
@@ -194,17 +194,17 @@ const EarlyAccess: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Phone Number</label>
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">phone number</label>
                                     <div className="relative group flex">
                                         <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-3">
                                             <Phone className="w-5 h-5 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
-                                            <span className="text-sm font-black text-blue-500 mt-0.5">{activeDialCode}</span>
+                                            <span className="text-base font-bold text-blue-500 mt-0.5">{activeDialCode}</span>
                                         </div>
                                         <input
                                             type="tel"
                                             placeholder="000 000 0000"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base"
                                             style={{ paddingLeft: `${activeDialCode.length * 9 + 60}px` }}
                                             value={formData.phone}
                                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -212,21 +212,21 @@ const EarlyAccess: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Organization (Optional)</label>
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-medium text-slate-500 ml-1">organization (optional)</label>
                                     <div className="relative group">
                                         <Building2 className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
                                         <input
                                             type="text"
-                                            placeholder="Company Name"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-bold text-sm"
+                                            placeholder="company name"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-14 pr-6 text-white focus:outline-none focus:border-blue-500/50 transition-all font-medium text-base"
                                             value={formData.company}
                                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-3 px-2">
+                                <div className="flex items-start gap-3 px-1 mt-2">
                                     <input
                                         type="checkbox"
                                         id="consent"
@@ -235,8 +235,8 @@ const EarlyAccess: React.FC = () => {
                                         checked={formData.consent}
                                         onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
                                     />
-                                    <label htmlFor="consent" className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase tracking-widest cursor-pointer hover:text-slate-300 transition-colors">
-                                        I consent to receive network updates and protocol activations.
+                                    <label htmlFor="consent" className="text-xs font-medium text-slate-400 leading-tight cursor-pointer hover:text-slate-300 transition-colors">
+                                        i consent to receive network updates and protocol activations.
                                     </label>
                                 </div>
 

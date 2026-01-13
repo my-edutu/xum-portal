@@ -8,6 +8,14 @@ import PlatformSections from './landing/PlatformSections';
 import FAQ from './landing/FAQ';
 import CallToAction from './landing/CallToAction';
 import Footer from './landing/Footer';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const fadeUp: any = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: "easeOut" }
+};
 
 const StatCounter = ({ value, label }: { value: string, label: string }) => {
     const [displayValue, setDisplayValue] = useState(0);
@@ -36,7 +44,7 @@ const StatCounter = ({ value, label }: { value: string, label: string }) => {
 
     return (
         <div ref={ref} className="text-center group">
-            <div className="text-3xl md:text-5xl font-black mb-1 heading-font text-white group-hover:text-blue-400 transition-colors">
+            <div className="text-3xl md:text-5xl font-semibold mb-1 heading-font text-white group-hover:text-blue-400 transition-colors">
                 {displayValue}{suffix}
             </div>
             <div className="text-[9px] uppercase tracking-[0.3em] text-slate-500 font-bold">
@@ -68,11 +76,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
     return (
         <div className="min-h-screen bg-[#020617]/50 selection:bg-blue-600/30">
             <Navbar onGetStarted={handleGetStarted} />
-            <Hero onGetStarted={handleGetStarted} />
-            <Marquee />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <Hero onGetStarted={handleGetStarted} />
+            </motion.div>
+
+            <motion.div {...fadeUp}>
+                <Marquee />
+            </motion.div>
 
             {/* Network in Motion Stats */}
-            <div className="py-12 md:py-16 border-t border-white/5 relative overflow-hidden">
+            <motion.div
+                {...fadeUp}
+                className="py-12 md:py-16 border-t border-white/5 relative overflow-hidden"
+            >
                 <div className="container max-w-6xl mx-auto px-6 relative z-10">
                     <h2 className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-blue-500/60 mb-8 md:mb-12">Live Ecosystem Activity</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -82,16 +98,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                         <StatCounter value="2M+" label="Total Rewards" />
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
-            <div id="features">
+            <motion.div id="features" {...fadeUp}>
                 <Features />
-            </div>
-            <div id="ecosystem">
+            </motion.div>
+
+            <motion.div id="ecosystem" {...fadeUp}>
                 <PlatformSections />
-            </div>
-            <CallToAction />
-            <FAQ />
+            </motion.div>
+
+            <motion.div {...fadeUp}>
+                <CallToAction />
+            </motion.div>
+
+            <motion.div {...fadeUp}>
+                <FAQ />
+            </motion.div>
+
             <Footer onAdminClick={handleAdminClick} />
         </div>
     );

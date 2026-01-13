@@ -55,7 +55,7 @@ const BusinessLanding: React.FC = () => {
                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">Enterprise Protocol v2.0</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl font-extrabold mb-10 leading-[0.9] outfit tracking-tighter animate-in fade-in slide-in-from-bottom-6 duration-1000 text-white min-h-[1.8em] md:min-h-[2.1em]">
+                        <h1 className="text-6xl md:text-8xl font-semibold mb-10 leading-[0.9] outfit tracking-tighter animate-in fade-in slide-in-from-bottom-6 duration-1000 text-white min-h-[1.8em] md:min-h-[2.1em]">
                             Power your models with <br />
                             <span className="text-slate-400 inline-block animate-[fade-in-up_0.5s_ease-out]" key={currentWordIndex}>
                                 {words[currentWordIndex]}
@@ -99,7 +99,7 @@ const BusinessLanding: React.FC = () => {
             <section className="py-32 px-6 bg-white/[0.02]">
                 <div className="container max-w-6xl mx-auto">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-black mb-6 outfit text-white">The Path to <span className="text-blue-500 text-gradient">Better Data.</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-semibold mb-6 outfit text-white">The Path to <span className="text-blue-500 text-gradient">Better Data.</span></h2>
                         <p className="text-slate-400 max-w-2xl mx-auto">Three simple phases to integrate XUM's human intelligence into your AI workflow.</p>
                     </div>
 
@@ -148,7 +148,7 @@ const BusinessLanding: React.FC = () => {
                         </div>
                     </div>
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-black mb-8 outfit leading-none text-white">
+                        <h2 className="text-4xl md:text-5xl font-semibold mb-8 outfit leading-none text-white">
                             Human-first <br /><span className="text-blue-500 text-gradient">Accuracy.</span>
                         </h2>
                         <p className="text-lg text-slate-400 leading-relaxed mb-8">
@@ -172,7 +172,7 @@ const BusinessLanding: React.FC = () => {
             <section className="py-32 px-6 bg-white/[0.01]">
                 <div className="container max-w-6xl mx-auto">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-black mb-6 outfit text-white">Global <span className="text-blue-500 text-gradient">Voices.</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-semibold mb-6 outfit text-white">Global <span className="text-blue-500 text-gradient">Voices.</span></h2>
                         <p className="text-slate-400 max-w-2xl mx-auto">Hear from the lead researchers and data scientists using XUM to build more equitable AI.</p>
                     </div>
 
