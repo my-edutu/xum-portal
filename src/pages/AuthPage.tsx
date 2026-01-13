@@ -73,9 +73,9 @@ const AuthPage: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Minimal Clerk Auth Card */}
-                <div className="animate-[slideInUp_1s_ease-out_0.2s_forwards] opacity-0" style={{ animationFillMode: 'forwards' }}>
-                    <div className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-4 md:p-6 shadow-2xl backdrop-blur-xl">
+                {/* Floating Auth Container */}
+                <div className="animate-[slideInUp_1s_ease-out_0.2s_forwards] opacity-0 flex justify-center w-full" style={{ animationFillMode: 'forwards' }}>
+                    <div className="w-full">
                         <SignIn
                             forceRedirectUrl={getRedirectPath()}
                             signUpForceRedirectUrl={getRedirectPath()}
@@ -87,18 +87,19 @@ const AuthPage: React.FC = () => {
                                     headerTitle: 'hidden',
                                     headerSubtitle: 'hidden',
                                     socialButtonsBlockButton: 'bg-white/5 border border-white/10 text-white hover:bg-white/10 h-14 rounded-2xl transition-all',
-                                    socialButtonsBlockButtonText: 'text-white font-semibold text-base',
-                                    dividerLine: 'bg-white/5',
-                                    dividerText: 'text-slate-600 text-[10px] font-bold uppercase tracking-[0.2em]',
-                                    formFieldLabel: 'text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1',
-                                    formFieldInput: `bg-white/[0.04] border border-white/10 text-white placeholder:text-slate-700 h-14 rounded-2xl focus:${themeBorder} focus:border-white/20 transition-all text-base px-6`,
+                                    socialButtonsBlockButtonText: 'text-white font-bold text-base',
+                                    dividerLine: 'bg-white/10',
+                                    dividerText: 'text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]',
+                                    formFieldLabel: 'text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1',
+                                    formFieldInput: `bg-white/[0.05] border border-white/10 text-white placeholder:text-slate-700 h-14 rounded-2xl focus:${themeBorder} focus:border-white/30 transition-all text-base px-6 font-bold`,
                                     formButtonPrimary: `${themeBg} hover:opacity-90 h-14 rounded-2xl font-black uppercase tracking-widest text-sm transition-all shadow-xl ${themeShadow} active:scale-95`,
-                                    footerActionLink: `text-${themeColor}-500 hover:text-${themeColor}-400 font-bold transition-colors`,
-                                    footerAction: 'text-slate-500 text-xs py-4',
-                                    identityPreviewText: 'text-white font-medium',
+                                    footerActionLink: `text-${themeColor}-500 hover:text-${themeColor}-400 font-black transition-colors`,
+                                    footerAction: 'text-slate-500 text-xs py-6 flex justify-center',
+                                    footer: 'bg-transparent',
+                                    identityPreviewText: 'text-white font-bold',
                                     identityPreviewEditButton: `text-${themeColor}-500`,
                                     formResendCodeLink: `text-${themeColor}-500`,
-                                    otpCodeFieldInput: 'bg-white/[0.03] border-white/10 text-white rounded-xl'
+                                    otpCodeFieldInput: 'bg-white/[0.05] border-white/10 text-white rounded-xl font-bold font-mono'
                                 },
                                 layout: {
                                     socialButtonsPlacement: 'bottom',
@@ -110,13 +111,13 @@ const AuthPage: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Minimal Footer Links */}
-                <div className="mt-12 flex items-center justify-between px-2 animate-[fadeIn_1s_ease-out_0.4s_forwards] opacity-0">
-                    <Link to="/" className="text-xs text-slate-500 hover:text-white transition-colors flex items-center gap-1.5">
+                {/* Center-aligned Footer Links */}
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 px-2 animate-[fadeIn_1s_ease-out_0.4s_forwards] opacity-0">
+                    <Link to="/" className="text-xs text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 order-2 sm:order-1">
                         <ArrowLeft size={14} />
                         Back to Home
                     </Link>
-                    <div className="flex gap-4">
+                    <div className="flex gap-6 order-1 sm:order-2">
                         <a href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Support</a>
                         <a href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Privacy</a>
                     </div>
@@ -135,9 +136,23 @@ const AuthPage: React.FC = () => {
                 .heading-font {
                     font-family: 'Space Grotesk', sans-serif;
                 }
-                /* Clerk Overrides to remove dev mode banners */
+                /* Clerk Overrides to remove dev mode banners and card backgrounds */
                 .cl-internal-ph72j9, .cl-internal-1dauvpw {
                     display: none !important;
+                }
+                .cl-card, .cl-rootBox {
+                    background: transparent !important;
+                }
+                .cl-footer {
+                    background: transparent !important;
+                    background-image: none !important;
+                    border: none !important;
+                }
+                .cl-socialButtonsBlockButton {
+                    background-color: rgba(255, 255, 255, 0.05) !important;
+                }
+                .cl-formFieldInput {
+                    font-weight: 700 !important;
                 }
             `}</style>
         </div>
