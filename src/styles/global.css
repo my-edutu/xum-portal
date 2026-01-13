@@ -16,9 +16,14 @@
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  /* BUTTON SYSTEM TOKENS v3.0 */
+  --btn-height-lg: 56px;
+  --btn-height-md: 48px;
+  --btn-height-sm: 40px;
+  --btn-radius: 12px;
+  --btn-font-size: 16px;
+  --btn-font-weight: 600;
+  --tap-target-min: 44px;
 }
 
 * {
@@ -337,7 +342,7 @@ button:focus {
 }
 
 /* ========================================
-   STANDARDIZED BUTTON SYSTEM v2.0
+   STANDARDIZED BUTTON SYSTEM v3.0 (Mobile Optimized)
    ======================================== */
 
 .btn-base {
@@ -345,64 +350,98 @@ button:focus {
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: var(--btn-font-weight);
+  text-transform: none;
+  /* Sentence case is better for readability */
+  letter-spacing: -0.01em;
+  border-radius: var(--btn-radius);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  line-height: normal;
+  line-height: 1;
   border: 1px solid transparent;
+  white-space: nowrap;
+  user-select: none;
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
 }
 
 .btn-base:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
+}
+
+.btn-base:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Primary Button Style */
 .btn-primary {
   background: #3b82f6;
   color: #ffffff;
-  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background: #2563eb;
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
 }
 
 /* Secondary Button Style */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   backdrop-filter: blur(8px);
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
 }
 
-/* Sizes */
+/* Size Ramping */
 .btn-lg {
-  height: 56px;
-  padding: 0 32px;
-  font-size: 14px;
+  height: var(--btn-height-lg);
+  padding: 0 28px;
+  font-size: 17px;
 }
 
 .btn-md {
-  height: 48px;
-  padding: 0 24px;
-  font-size: 13px;
+  height: var(--btn-height-md);
+  padding: 0 20px;
+  font-size: 15px;
 }
 
 .btn-sm {
-  height: 38px;
-  padding: 0 16px;
-  font-size: 11px;
+  height: var(--btn-height-sm);
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+/* Mobile Overrides (Viewport specific) */
+@media (max-width: 640px) {
+  .btn-lg {
+    height: 52px;
+    /* Slightly tighter but still well above 44px */
+    padding: 0 24px;
+    font-size: 16px;
+    width: 100%;
+    /* Better for thumb reach */
+  }
+
+  .btn-md {
+    height: 48px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+
+  .btn-sm {
+    height: 44px;
+    /* Ensure 44px min in headers/tight areas */
+    padding: 0 14px;
+  }
 }
 
 /* Variants for Orange/Legacy compatibility */

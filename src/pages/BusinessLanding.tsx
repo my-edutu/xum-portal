@@ -70,15 +70,15 @@ const BusinessLanding: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000">
                             <button
                                 onClick={() => navigate('/auth')}
-                                className="px-10 py-5 bg-white text-black font-extrabold uppercase tracking-widest rounded-full hover:bg-slate-200 transition-all active:scale-95 flex items-center justify-center gap-2"
+                                className="btn-base btn-primary btn-lg"
                             >
-                                Get Started
+                                Get started
                             </button>
                             <button
                                 onClick={() => navigate('/waitlist')}
-                                className="px-10 py-5 bg-white/5 border border-white/10 text-white font-extrabold uppercase tracking-widest rounded-full hover:bg-white/10 transition-all active:scale-95 backdrop-blur-md"
+                                className="btn-base btn-secondary btn-lg"
                             >
-                                Contact Sales
+                                Contact sales
                             </button>
                         </div>
                     </div>

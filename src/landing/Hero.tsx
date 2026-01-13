@@ -68,14 +68,14 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             onClick={handleGetStarted}
             className="btn-base btn-primary btn-lg w-full sm:w-auto gap-3"
           >
-            Get Early Access
+            Get early access
             <span className="material-symbols-outlined text-xl sm:text-2xl">bolt</span>
           </button>
           <button
             onClick={handleBuyDatasets}
             className="btn-base btn-secondary btn-lg w-full sm:w-auto"
           >
-            Buy Datasets / API
+            Buy datasets / API
           </button>
         </div>
       </div>

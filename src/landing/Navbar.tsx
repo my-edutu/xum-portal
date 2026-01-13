@@ -51,9 +51,9 @@ const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
         <div className="flex items-center gap-4 flex-shrink-0">
           <button
             onClick={handleAction}
-            className="btn-base btn-primary btn-md px-8"
+            className="btn-base btn-primary btn-md px-6 md:px-8"
           >
-            Get Started
+            Get started
           </button>
         </div>
       </nav>
