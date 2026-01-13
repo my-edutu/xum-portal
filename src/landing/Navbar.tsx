@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   onGetStarted?: () => void;
@@ -8,12 +8,29 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleGetStarted = () => {
-    if (onGetStarted) {
-      onGetStarted();
-    } else {
+  const isBusinessPage = location.pathname === '/business';
+  const isHomePage = location.pathname === '/';
+
+  const handleAction = () => {
+    if (isBusinessPage) {
       navigate('/auth');
+    } else {
+      navigate('/waitlist');
+    }
+  };
+
+  const scrollToSection = (id: string) => {
+    if (!isHomePage) {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -26,21 +43,15 @@ const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
           </Link>
         </div>
         <div className="hidden lg:flex flex-grow justify-center items-center gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-          <a className="hover:text-blue-500 transition-colors" href="#features">Features</a>
-          <a className="hover:text-blue-500 transition-colors" href="#solutions">Solutions</a>
-          <a className="hover:text-blue-500 transition-colors" href="#enterprise">Enterprise</a>
-          <a className="hover:text-blue-500 transition-colors" href="#faq">FAQ</a>
+          <button onClick={() => scrollToSection('features')} className="hover:text-blue-500 transition-colors uppercase tracking-[0.2em]">Features</button>
+          <button onClick={() => scrollToSection('ecosystem')} className="hover:text-blue-500 transition-colors uppercase tracking-[0.2em]">Ecosystem</button>
+          <Link className="hover:text-blue-500 transition-colors" to="/business">Enterprise</Link>
+          <Link className="hover:text-blue-500 transition-colors" to="/faq">FAQ</Link>
         </div>
         <div className="flex items-center gap-4 flex-shrink-0">
-          <Link
-            to="/auth"
-            className="hidden sm:block text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
-          >
-            Sign In
-          </Link>
           <button
-            onClick={handleGetStarted}
-            className="btn-base btn-primary btn-md"
+            onClick={handleAction}
+            className="btn-base btn-primary btn-md px-8"
           >
             Get Started
           </button>

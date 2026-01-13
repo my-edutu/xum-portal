@@ -10,30 +10,25 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    if (onGetStarted) {
-      onGetStarted();
-    } else {
-      navigate('/auth');
-    }
+    navigate('/waitlist');
   };
 
   const handleBuyDatasets = () => {
-    navigate('/auth?intent=datasets');
+    navigate('/business');
   };
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 overflow-hidden px-6">
-      {/* Background Image Layer - Fixed visibility and z-index */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 -z-10 overflow-hidden bg-black">
         <img
-          src="/assets/animated-bg.jpg"
+          src="/assets/hero-bg-new.jpg"
           className="w-full h-full object-cover scale-105 animate-[slow-zoom_20s_ease-in-out_infinite]"
-          alt="Abstract Background"
-          style={{ filter: 'brightness(0.55)' }}
+          alt="Cinematic Background"
+          style={{ filter: 'brightness(1.0)' }}
         />
         {/* Deep overlays for high-end cinematic blend */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#020617]/40 to-[#020617] opacity-90"></div>
-        <div className="absolute inset-0 bg-[#020617]/30 mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] opacity-60"></div>
+        <div className="absolute inset-0 bg-[#020617]/10 mix-blend-overlay"></div>
       </div>
 
       <div className="container max-w-6xl mx-auto text-center relative z-10">
@@ -53,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
         {/* Text size increased on mobile to target ~4 lines, weight font-extrabold */}
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-[1.05] md:leading-[0.9] text-gradient max-w-[16ch] sm:max-w-[18ch] mx-auto opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-[1.05] md:leading-[0.9] text-white max-w-[16ch] sm:max-w-[18ch] mx-auto opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]"
           style={{
             fontFamily: "'Inter', sans-serif",
             letterSpacing: '-0.04em',

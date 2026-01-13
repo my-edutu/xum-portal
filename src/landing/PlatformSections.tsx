@@ -8,48 +8,48 @@ const PlatformSections: React.FC = () => {
         <div className="container max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-3 heading-font tracking-tight">Two Ways to Connect.</h2>
-            <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto italic">One network, two specific tools for data buyers and data creators.</p>
+            <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto">One network, two specific tools for data buyers and data creators.</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Enterprise Card */}
             <div className="p-10 bg-white/[0.02] border border-white/10 rounded-[2rem] flex flex-col group hover:border-blue-500/20 transition-all">
-               <h3 className="text-2xl font-bold mb-2 text-white heading-font">For Businesses</h3>
-               <p className="text-slate-500 text-xs mb-6 max-w-xs uppercase tracking-widest">Buy High-Quality Training Data</p>
-               
-               <ul className="space-y-3 mb-8 flex-grow">
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Dataset Creation
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Safety Testing (RLHF)
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Enterprise API Access
-                  </li>
-               </ul>
-               
-               <button className="btn-primary w-full">Start Project</button>
+              <h3 className="text-2xl font-bold mb-2 text-white heading-font">For Businesses</h3>
+              <p className="text-slate-500 text-xs mb-6 max-w-xs uppercase tracking-widest">Buy High-Quality Training Data</p>
+
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Dataset Creation
+                </li>
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Safety Testing (RLHF)
+                </li>
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Enterprise API Access
+                </li>
+              </ul>
+
+              <button className="btn-base btn-primary btn-lg w-full">Start Project</button>
             </div>
 
             {/* App Card */}
             <div className="p-10 bg-blue-600/5 border border-blue-600/20 rounded-[2rem] flex flex-col group">
-               <h3 className="text-2xl font-bold mb-2 text-white heading-font">For Contributors</h3>
-               <p className="text-slate-500 text-xs mb-6 max-w-xs uppercase tracking-widest">Earn by Teaching AI</p>
-               
-               <ul className="space-y-3 mb-8 flex-grow">
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Weekly USD Payouts
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Level-Up Rewards
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-400 text-sm">
-                    <span className="material-symbols-outlined text-blue-500 text-base">check</span> Flexible Interface
-                  </li>
-               </ul>
+              <h3 className="text-2xl font-bold mb-2 text-white heading-font">For Contributors</h3>
+              <p className="text-slate-500 text-xs mb-6 max-w-xs uppercase tracking-widest">Earn by Teaching AI</p>
 
-               <button className="btn-secondary w-full">Download App</button>
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Weekly USD Payouts
+                </li>
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Level-Up Rewards
+                </li>
+                <li className="flex items-center gap-3 text-slate-400 text-sm">
+                  <span className="material-symbols-outlined text-blue-500 text-base">check</span> Flexible Interface
+                </li>
+              </ul>
+
+              <button className="btn-base btn-secondary btn-lg w-full">Download App</button>
             </div>
           </div>
         </div>

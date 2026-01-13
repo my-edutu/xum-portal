@@ -7,6 +7,11 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
+  const handleComingSoon = (e: React.MouseEvent) => {
+    e.preventDefault();
+    alert("This feature is coming soon!");
+  };
+
   return (
     <footer className="border-t border-white/5 py-16 px-6 bg-[#020617] relative overflow-hidden">
       {/* Background glow for consistency */}
@@ -18,29 +23,32 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
             <Link className="flex items-center gap-2 mb-6" to="/">
               <span className="font-black text-3xl tracking-tighter uppercase text-white heading-font">XUM AI</span>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed font-medium">
-              Powering the next generation of artificial intelligence through global human intelligence and verified truth.
+            <p className="text-slate-400 text-sm leading-relaxed font-black opacity-60">
+              BUILDING THE WORLD'S LARGEST ETHICAL HUMAN INTELLIGENCE NETWORK.
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-20">
             <div className="flex flex-col gap-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Platform</h4>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Solutions</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Datasets</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Enterprise</a>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Ecosystem</h4>
+              <Link className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" to="/waitlist">Waitlist</Link>
+              <Link className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors uppercase tracking-widest" to="/business">Business</Link>
+              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>API Docs</a>
             </div>
             <div className="flex flex-col gap-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Resources</h4>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Documentation</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Privacy</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Support</a>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Support</h4>
+              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>Privacy</a>
+              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>Support</a>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-2">Company</h4>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">About</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Careers</a>
-              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#">Contact</a>
+              <a className="text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-widest" href="#" onClick={handleComingSoon}>About</a>
+              <Link
+                to="/auth?intent=admin"
+                className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors uppercase tracking-widest text-left"
+              >
+                Admin
+              </Link>
             </div>
           </div>
         </div>
@@ -48,18 +56,10 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-slate-600 font-black">
           <div className="flex items-center gap-6">
             <p>© 2026 XUM AI.</p>
-            {/* Admin Login Link - Small & Subtle */}
-            <button
-              onClick={onAdminClick}
-              className="text-slate-700 hover:text-orange-500 transition-colors text-[9px] tracking-widest opacity-50 hover:opacity-100"
-            >
-              Admin
-            </button>
           </div>
           <div className="flex items-center gap-8">
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">Discord</a>
+            <a href="#" onClick={handleComingSoon} className="hover:text-white transition-colors">Twitter</a>
+            <a href="#" onClick={handleComingSoon} className="hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>

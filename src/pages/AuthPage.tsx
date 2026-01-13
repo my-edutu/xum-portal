@@ -9,15 +9,20 @@ const AuthPage: React.FC = () => {
     const intent = searchParams.get('intent');
     const { user, isLoaded } = useUser();
 
-    // Check if user is already signed in and has valid company email
+    // Determine the correct redirect path based on intent
+    const getRedirectPath = () => {
+        if (intent === 'admin') return '/admin/dashboard';
+        return '/company/dashboard';
+    };
+
+    // Check if user is already signed in and redirect appropriately
     useEffect(() => {
         if (isLoaded && user) {
-            const email = user.primaryEmailAddress?.emailAddress || '';
-            if (isValidCompanyEmail(email)) {
-                navigate('/dashboard');
-            }
+            // Always redirect authenticated users to their dashboard
+            // Role-based access is handled by the protected route components
+            navigate(getRedirectPath(), { replace: true });
         }
-    }, [user, isLoaded, navigate]);
+    }, [user, isLoaded, navigate, intent]);
 
     // If not loaded yet, show loading
     if (!isLoaded) {
@@ -28,52 +33,36 @@ const AuthPage: React.FC = () => {
         );
     }
 
-    // If user is signed in but doesn't have valid company email
+    // If user is already signed in, redirect them (handled in useEffect above)
+    // This prevents showing the auth form to already authenticated users
     if (user) {
-        const email = user.primaryEmailAddress?.emailAddress || '';
-        if (!isValidCompanyEmail(email)) {
-            return (
-                <div className="min-h-screen bg-[#020617] flex items-center justify-center px-6">
-                    <div className="w-full max-w-md text-center">
-                        <div className="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
-                            <Lock className="text-red-500/80" size={32} />
-                        </div>
-                        <h1 className="text-2xl font-bold text-white mb-4">Verification Required</h1>
-                        <p className="text-slate-400 mb-8 leading-relaxed">
-                            Access to the XUM Business platform is currently restricted to <span className="text-blue-500 font-bold">@xumai.app</span> collaborators.
-                        </p>
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-8">
-                            <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-1">Identified As</p>
-                            <p className="text-sm text-white font-medium">{email}</p>
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <button
-                                onClick={() => window.location.reload()}
-                                className="btn-base btn-primary btn-md w-full"
-                            >
-                                Try Another Account
-                            </button>
-                            <Link
-                                to="/"
-                                className="btn-base btn-secondary btn-md w-full"
-                            >
-                                Back to Landing
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
+        return (
+            <div className="min-h-screen bg-[#020617] flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-blue-600/20 border-t-blue-600 rounded-full animate-spin"></div>
+            </div>
+        );
     }
+
+    const isAdmin = intent === 'admin';
+
+    // Determined visual theme
+    const themeColor = isAdmin ? 'orange' : 'blue';
+    const themeBg = isAdmin ? 'bg-orange-600' : 'bg-blue-600';
+    const themeBorder = isAdmin ? 'border-orange-500/50' : 'border-blue-500/50';
+    const themeRing = isAdmin ? 'ring-orange-500/10' : 'ring-blue-500/10';
+    const themeShadow = isAdmin ? 'shadow-orange-900/20' : 'shadow-blue-900/20';
 
     return (
         <div className="min-h-screen bg-[#020617] selection:bg-blue-500/30 flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
             {/* Minimal Background with User Image */}
             <div className="absolute inset-0 -z-10 overflow-hidden opacity-40">
                 <img
-                    src="/assets/animated-bg.jpg"
+                    src={isAdmin ? "/assets/admin-bg.jpg" : "/assets/animated-bg.jpg"}
                     className="w-full h-full object-cover animate-[slow-zoom_30s_ease-in-out_infinite]"
                     alt=""
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/assets/hero-bg-new.jpg";
+                    }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617]"></div>
             </div>
@@ -82,15 +71,17 @@ const AuthPage: React.FC = () => {
                 {/* Minimal Header */}
                 <div className="text-center mb-12 animate-[fadeIn_0.8s_ease-out]">
                     <Link to="/" className="inline-flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
-                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                            <Building2 className="text-white" size={18} />
+                        <div className={`w-8 h-8 ${themeBg} rounded-lg flex items-center justify-center`}>
+                            {isAdmin ? <Lock className="text-white" size={18} /> : <Building2 className="text-white" size={18} />}
                         </div>
                         <span className="text-xl font-bold tracking-tighter text-white heading-font uppercase">XUM AI</span>
                     </Link>
-                    <h2 className="text-3xl font-bold text-white mb-3">Welcome Back</h2>
+                    <h2 className="text-3xl font-bold text-white mb-3">
+                        {isAdmin ? 'Admin Terminal' : 'Business Hub'}
+                    </h2>
                     <p className="text-slate-500 text-sm font-medium">
-                        {intent === 'datasets'
-                            ? 'Sign in to access premium AI datasets.'
+                        {isAdmin
+                            ? 'Authorized personnel only. Accessing master node.'
                             : 'Sign in to your enterprise workstation.'
                         }
                     </p>
@@ -100,6 +91,8 @@ const AuthPage: React.FC = () => {
                 <div className="animate-[fadeIn_1s_ease-out_0.2s_forwards] opacity-0" style={{ animationFillMode: 'forwards' }}>
                     <div className="bg-white/[0.02] border border-white/10 rounded-[32px] p-2 shadow-2xl overflow-hidden">
                         <SignIn
+                            forceRedirectUrl={getRedirectPath()}
+                            signUpForceRedirectUrl={getRedirectPath()}
                             appearance={{
                                 elements: {
                                     rootBox: 'w-full',
@@ -111,13 +104,13 @@ const AuthPage: React.FC = () => {
                                     dividerLine: 'bg-white/5',
                                     dividerText: 'text-slate-600 text-[10px] font-bold uppercase tracking-widest',
                                     formFieldLabel: 'text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1.5',
-                                    formFieldInput: 'bg-white/[0.03] border-white/10 text-white placeholder:text-slate-700 h-12 rounded-xl focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 transition-all text-sm',
-                                    formButtonPrimary: 'bg-blue-600 hover:bg-blue-500 h-12 rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-900/20',
-                                    footerActionLink: 'text-blue-500 hover:text-blue-400 font-bold transition-colors',
+                                    formFieldInput: `bg-white/[0.03] border-white/10 text-white placeholder:text-slate-700 h-12 rounded-xl focus:${themeBorder} focus:ring-4 focus:${themeRing} transition-all text-sm`,
+                                    formButtonPrimary: `${themeBg} hover:opacity-90 h-12 rounded-xl font-bold text-sm transition-all shadow-lg ${themeShadow}`,
+                                    footerActionLink: `text-${themeColor}-500 hover:text-${themeColor}-400 font-bold transition-colors`,
                                     footerAction: 'text-slate-500 text-xs',
                                     identityPreviewText: 'text-white font-medium',
-                                    identityPreviewEditButton: 'text-blue-500',
-                                    formResendCodeLink: 'text-blue-500',
+                                    identityPreviewEditButton: `text-${themeColor}-500`,
+                                    formResendCodeLink: `text-${themeColor}-500`,
                                     otpCodeFieldInput: 'bg-white/[0.03] border-white/10 text-white rounded-xl'
                                 },
                                 layout: {
@@ -155,6 +148,8 @@ const AuthPage: React.FC = () => {
                 .heading-font {
                     font-family: 'Space Grotesk', sans-serif;
                 }
+                .text-orange-500 { color: #f97316; }
+                .text-orange-400 { color: #fb923c; }
             `}</style>
         </div>
     );

@@ -13,20 +13,19 @@ const logosLine2 = [
   { name: "Mistral AI", slug: "mistralai" },
   { name: "Microsoft", slug: "microsoft" },
   { name: "Hugging Face", slug: "huggingface" },
-  { name: "Stability AI", slug: "stabilityai" },
   { name: "Tesla", slug: "tesla" }
 ];
 
 const LogoItem: React.FC<{ logo: { name: string, slug: string } }> = ({ logo }) => (
-  <div className="flex items-center gap-3 px-8 group cursor-default">
-    <div className="w-8 h-8 flex items-center justify-center bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors p-1.5">
-      <img 
-        src={`https://cdn.simpleicons.org/${logo.slug}`} 
-        alt={logo.name} 
+  <div className="flex items-center gap-4 md:gap-6 px-10 md:px-14 group cursor-default">
+    <div className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center bg-white/5 rounded-xl group-hover:bg-white/10 transition-all duration-300 p-2 md:p-3">
+      <img
+        src={`https://cdn.simpleicons.org/${logo.slug}`}
+        alt={logo.name}
         className="w-full h-full object-contain filter grayscale brightness-200 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
       />
     </div>
-    <span className="text-xs font-bold tracking-widest text-white/10 group-hover:text-white/40 transition-colors heading-font uppercase">
+    <span className="text-[10px] md:text-sm lg:text-base font-black tracking-[0.2em] text-white/50 group-hover:text-white transition-all duration-300 heading-font uppercase">
       {logo.name}
     </span>
   </div>
@@ -34,10 +33,10 @@ const LogoItem: React.FC<{ logo: { name: string, slug: string } }> = ({ logo }) 
 
 const Marquee: React.FC = () => {
   return (
-    <section className="py-10 border-y border-white/5 bg-black/40 relative overflow-hidden flex flex-col gap-8">
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#020617] to-transparent z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#020617] to-transparent z-10"></div>
-      
+    <section className="py-8 md:py-12 relative overflow-hidden flex flex-col gap-6 md:gap-10">
+      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#020617] to-transparent z-10"></div>
+      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-[#020617] to-transparent z-10"></div>
+
       {/* Line 1 - Moving Left */}
       <div className="flex overflow-hidden whitespace-nowrap">
         <div className="marquee-track flex animate-scroll-left">
@@ -76,10 +75,10 @@ const Marquee: React.FC = () => {
           100% { transform: translateX(0); }
         }
         .animate-scroll-left {
-          animation: scrollLeft 40s linear infinite;
+          animation: scrollLeft 60s linear infinite;
         }
         .animate-scroll-right {
-          animation: scrollRight 40s linear infinite;
+          animation: scrollRight 60s linear infinite;
         }
         .marquee-track {
           display: flex;

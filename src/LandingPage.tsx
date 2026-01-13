@@ -54,14 +54,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
     const navigate = useNavigate();
 
     const handleGetStarted = () => {
-        navigate('/auth');
+        navigate('/waitlist');
     };
 
     const handleAdminClick = () => {
         if (onAdminClick) {
             onAdminClick();
         } else {
-            navigate('/admin');
+            navigate('/auth?intent=admin');
         }
     };
 
@@ -84,8 +84,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                 </div>
             </div>
 
-            <Features />
-            <PlatformSections />
+            <div id="features">
+                <Features />
+            </div>
+            <div id="ecosystem">
+                <PlatformSections />
+            </div>
             <CallToAction />
             <FAQ />
             <Footer onAdminClick={handleAdminClick} />

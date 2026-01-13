@@ -1137,7 +1137,7 @@ const Datasets = () => {
                     <span className="text-[10px] font-black text-emerald-500 uppercase">Settlement Value</span>
                     <span className="text-2xl font-black text-white outfit">{selectedBatch.price}</span>
                   </div>
-                  <p className="text-[10px] text-dim mt-2 italic">Proceeds will be automatically distributed to contributing workers and platform fees.</p>
+                  <p className="text-[10px] text-dim mt-2">Proceeds will be automatically distributed to contributing workers and platform fees.</p>
                 </div>
 
                 <div className="flex gap-4">

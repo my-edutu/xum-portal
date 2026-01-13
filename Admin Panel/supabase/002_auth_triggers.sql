@@ -1,6 +1,7 @@
 -- Auth Triggers for XUM AI
--- Ensures that a public.users profile is created whenever a new user signs up via Supabase Auth.
+-- Version: 2.0
 
+-- Function to handle new user signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -11,6 +12,10 @@ BEGIN
     COALESCE(NEW.raw_user_meta_data->>'full_name', 'XUM User'),
     COALESCE(NEW.raw_user_meta_data->>'role', 'contributor')
   );
+  
+  -- If role is company, we can optionally create a placeholder company entry
+  -- but usually this is handled via onboarding in the frontend.
+  
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
