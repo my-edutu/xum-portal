@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Copy, Download, Smartphone, Globe, Mic, Gamepad2, MessageCircle, Award } from 'lucide-react';
+import { Download, Smartphone, Globe, Mic, Gamepad2, MessageCircle, Award } from 'lucide-react';
 
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
 
-const DIRECT_DOWNLOAD_URL = 'https://expo.dev/artifacts/eas/aa7eCVVVNLRh2jB1R7SZH2.aab';
-
 const XumSection: React.FC = () => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(DIRECT_DOWNLOAD_URL);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   return (
     <div className="bg-white/[0.02] border border-white/5 rounded-[2rem] p-8 md:p-10 hover:border-blue-500/20 transition-colors duration-500">
       <div className="flex items-start gap-4 mb-6">
@@ -48,24 +34,14 @@ const XumSection: React.FC = () => {
         </span>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <a
-          href={DIRECT_DOWNLOAD_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="btn-base bg-blue-600 hover:bg-blue-500 text-white btn-lg gap-3 w-full sm:w-auto"
-        >
-          <Download className="w-5 h-5" />
-          Download Now
-        </a>
-        <button
-          onClick={handleCopyLink}
-          className="btn-base btn-secondary btn-lg gap-3 w-full sm:w-auto"
-        >
-          <Copy className="w-5 h-5" />
-          {copied ? 'Link copied' : 'Copy download link'}
-        </button>
-      </div>
+      <a
+        href="/apks/xum-ai.apk"
+        download
+        className="inline-flex items-center gap-3 btn-base bg-blue-600 hover:bg-blue-500 text-white btn-lg w-full sm:w-auto"
+      >
+        <Download className="w-5 h-5" />
+        Download Now
+      </a>
     </div>
   );
 };
@@ -113,7 +89,7 @@ const Downloads: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative overflow-hidden bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-8 md:p-10"
+              className="relative overflow-hidden bg-white border border-orange-200 rounded-[2rem] p-8 md:p-10"
             >
               <div className="absolute w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(255,107,0,0.12),transparent_70%)] top-[-150px] right-[-150px] pointer-events-none"></div>
               <div className="absolute w-[350px] h-[350px] bg-[radial-gradient(circle,rgba(255,138,0,0.08),transparent_70%)] bottom-[-100px] left-[-100px] pointer-events-none"></div>
@@ -125,9 +101,9 @@ const Downloads: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-extrabold text-[#FF8A00] tracking-widest uppercase">
-                      LinguaLink <span className="text-white">AI</span>
+                      LinguaLink <span className="text-slate-900">AI</span>
                     </div>
-                    <p className="text-white/70 text-sm mt-0.5">Speak Your Roots</p>
+                    <p className="text-slate-500 text-sm mt-0.5">Speak Your Roots</p>
                   </div>
                 </div>
 
@@ -135,10 +111,10 @@ const Downloads: React.FC = () => {
                   Now available on iOS &amp; Android
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3">
+                <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">
                   Speak your roots. Share your voice.
                 </h3>
-                <p className="text-[#aaa] leading-relaxed mb-6 max-w-2xl">
+                <p className="text-slate-500 leading-relaxed mb-6 max-w-2xl">
                   LinguaLink helps you learn, speak, and share your mother tongue with the world.
                   Record voice clips, make videos, play games, and earn real rewards.
                 </p>
@@ -148,13 +124,13 @@ const Downloads: React.FC = () => {
                   {features.map((f, i) => {
                     const Icon = f.icon;
                     return (
-                      <div key={i} className="flex items-start gap-3 bg-[#1a1a1a] border border-white/5 rounded-xl p-4">
+                      <div key={i} className="flex items-start gap-3 bg-orange-50 border border-orange-200 rounded-xl p-4">
                         <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#FF8A0022] to-[#FF6B0011] flex items-center justify-center shrink-0">
                           <Icon className="w-4 h-4 text-[#FF8A00]" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-white">{f.label}</p>
-                          <p className="text-xs text-[#999]">{f.desc}</p>
+                          <p className="text-sm font-semibold text-slate-800">{f.label}</p>
+                          <p className="text-xs text-slate-500">{f.desc}</p>
                         </div>
                       </div>
                     );
@@ -162,21 +138,22 @@ const Downloads: React.FC = () => {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 mb-6">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 rounded-full text-xs text-slate-400">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full text-xs text-slate-500">
                     <Smartphone size={14} /> iOS — Coming Soon
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 rounded-full text-xs text-slate-400">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full text-xs text-slate-500">
                     <Smartphone size={14} /> Android — Coming Soon
                   </span>
                 </div>
 
-                <button
-                  disabled
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] opacity-70 cursor-not-allowed"
+                <a
+                  href="/apks/lingualink.apk"
+                  download
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
                 >
                   <Download size={18} />
                   Download Now
-                </button>
+                </a>
               </div>
             </motion.div>
           </div>
