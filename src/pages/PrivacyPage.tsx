@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
-import { Shield, Mail, Trash2, Camera, Mic, Image, Key, BarChart3, Lock, Clock } from 'lucide-react';
+import { Shield, Mail, Trash2, Camera, Mic, Image, Key, BarChart3, Lock, Clock, Send } from 'lucide-react';
 
 const sections = [
   {
@@ -54,8 +54,8 @@ const sections = [
   {
     icon: Trash2,
     title: 'Delete Your Account',
-    content: 'To delete your account, kindly send an email with the subject line "Delete Account" to:',
-    emailAction: { label: 'infolingualinkai@gmail.com', href: 'mailto:infolingualinkai@gmail.com?subject=Delete Account' }
+    content: 'To delete account, kindly send delete to the email',
+    deleteEmail: 'infolingualinkai@gmail.com'
   },
   {
     icon: Lock,
@@ -72,6 +72,47 @@ const sections = [
     ]
   }
 ];
+
+const DeleteAccountForm: React.FC<{ email: string }> = ({ email }) => {
+  const [userEmail, setUserEmail] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent('Delete Account');
+    const body = encodeURIComponent(
+      `Account Email: ${userEmail}\n\nI request the permanent deletion of my account and all associated data.`
+    );
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <div className="ml-4 mt-4">
+      <p className="text-slate-300 font-semibold mb-2">
+        To delete account, kindly send delete to the email
+      </p>
+      <p className="text-blue-400 font-mono text-sm mb-4">{email}</p>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <input
+            type="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            placeholder="Enter your account email"
+            required
+            className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all"
+          />
+        </div>
+        <button
+          type="submit"
+          className="inline-flex items-center gap-3 px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20"
+        >
+          <Send size={18} />
+          Send Delete Request
+        </button>
+      </form>
+    </div>
+  );
+};
 
 const PrivacyPage: React.FC = () => {
   return (
@@ -151,17 +192,9 @@ const PrivacyPage: React.FC = () => {
                   </ul>
                 )}
 
-                {/* Email action (Delete Account) */}
-                {section.emailAction && (
-                  <div className="ml-4 mt-4">
-                    <a
-                      href={section.emailAction.href}
-                      className="inline-flex items-center gap-3 px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20"
-                    >
-                      <Mail size={18} />
-                      {section.emailAction.label}
-                    </a>
-                  </div>
+                {/* Delete Account Form */}
+                {section.deleteEmail && (
+                  <DeleteAccountForm email={section.deleteEmail} />
                 )}
 
                 {/* Contact links */}
