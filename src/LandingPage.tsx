@@ -108,7 +108,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                             />
                         </h2>
                         <p className="text-slate-500 text-lg max-w-[560px] mx-auto mb-10">
-                            LinguaLink helps you learn, speak, and share your mother tongue with the world.
+                            LinguaLink AI helps you learn, speak, and share your mother tongue with the world.
                             Record voice clips, play games, and earn real rewards.
                         </p>
                         <button

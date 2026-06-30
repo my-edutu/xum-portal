@@ -115,7 +115,7 @@ const Downloads: React.FC = () => {
                   Speak your roots. Share your voice.
                 </h3>
                 <p className="text-slate-500 leading-relaxed mb-6 max-w-2xl">
-                  LinguaLink helps you learn, speak, and share your mother tongue with the world.
+                  LinguaLink AI helps you learn, speak, and share your mother tongue with the world.
                   Record voice clips, make videos, play games, and earn real rewards.
                 </p>
 

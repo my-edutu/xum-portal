@@ -49,7 +49,7 @@ const LinguaLinkDownload: React.FC = () => {
           >
             Download{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
-              LinguaLink
+              LinguaLink AI
             </span>
           </motion.h1>
 
