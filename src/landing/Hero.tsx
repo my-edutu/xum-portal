@@ -67,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             <span className="material-symbols-outlined text-xl sm:text-2xl">bolt</span>
           </button>
           <button
-            onClick={handleGetStarted}
+            onClick={() => navigate('/lingualink')}
             className="btn-base btn-secondary btn-lg w-full sm:w-auto text-body-base"
           >
             Download LinguaLink
