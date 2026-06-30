@@ -32,3 +32,8 @@ dist-ssr
 
 # Vercel
 .vercel
+
+# Large binaries (hosted via GitHub Releases, not stored in git)
+*.apk
+*.aab
+*.ipa
