@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Copy, Check, Languages } from 'lucide-react';
 
 
-const LINGUALINK_DOWNLOAD_URL = '#'; // Update with actual download link
+const LINGUALINK_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v1.0.0-lingualink/application-7de3731e-6f40-4947-a5ef-04092d21df0d.apk';
 
 const LinguaLinkDownload: React.FC = () => {
   const [copied, setCopied] = useState(false);
