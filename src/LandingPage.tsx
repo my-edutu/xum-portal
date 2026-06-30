@@ -9,7 +9,7 @@ import CallToAction from './landing/CallToAction';
 import FAQ from './landing/FAQ';
 import Testimonials from './landing/Testimonials';
 import Footer from './landing/Footer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download, Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fadeUp: any = {
@@ -89,36 +89,40 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
             {/* LinguaLink AI Section */}
             <motion.div
                 {...fadeUp}
-                className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-orange-100 border-y border-orange-200"
+                className="relative overflow-hidden bg-[#0f0f0f] border-y border-white/5"
             >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(251,146,60,0.15),transparent_60%)]"></div>
-                <div className="container max-w-6xl mx-auto px-6 py-16 md:py-24 relative z-10">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-                        <div className="max-w-xl">
-                            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-orange-500 text-white rounded-full text-xs font-bold uppercase tracking-widest mb-5">
-                                New App
-                            </span>
-                            <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-4 tracking-tight">
-                                LinguaLink <span className="text-orange-500">AI</span>
-                            </h2>
-                            <p className="text-lg text-slate-600 leading-relaxed mb-2">
-                                Speak Your Roots
-                            </p>
-                            <p className="text-slate-500 leading-relaxed mb-6">
-                                Preserve and celebrate your linguistic heritage. Connect with your native tongue through intelligent language grounding and cultural preservation.
-                            </p>
+                <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,107,0,0.15),transparent_70%)] top-[-200px] right-[-200px] pointer-events-none"></div>
+                <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(255,138,0,0.1),transparent_70%)] bottom-[-150px] left-[-150px] pointer-events-none"></div>
+                <div className="container max-w-6xl mx-auto px-6 py-16 md:py-24 relative z-10 text-center">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="text-sm font-extrabold text-[#FF8A00] tracking-widest uppercase mb-6">
+                            LinguaLink <span className="text-white">AI</span>
+                        </div>
+                        <div className="inline-block px-4 py-1.5 rounded-full bg-[rgba(255,107,0,0.15)] border border-[rgba(255,107,0,0.3)] text-[#FF8A00] text-sm font-semibold mb-5">
+                            Now available on iOS &amp; Android
+                        </div>
+                        <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.1] mb-5 text-white">
+                            Speak your roots. Share your voice.
+                        </h2>
+                        <p className="text-[#aaa] text-lg max-w-[560px] mx-auto mb-10">
+                            LinguaLink helps you learn, speak, and share your mother tongue with the world.
+                            Record voice clips, play games, and earn real rewards.
+                        </p>
+                        <div className="flex gap-4 justify-center flex-wrap">
                             <button
                                 onClick={handleGetStarted}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-all shadow-lg shadow-orange-500/30 text-base"
+                                className="inline-flex items-center gap-2 px-9 py-4 rounded-full font-semibold text-base bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
                             >
+                                <Download size={20} />
                                 Get Started
-                                <ArrowRight className="w-5 h-5" />
                             </button>
-                        </div>
-                        <div className="shrink-0">
-                            <div className="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-orange-400 to-orange-600 rounded-[3rem] flex items-center justify-center shadow-2xl shadow-orange-500/30">
-                                <span className="text-6xl md:text-7xl font-black text-white tracking-tight">L</span>
-                            </div>
+                            <button
+                                onClick={handleGetStarted}
+                                className="inline-flex items-center gap-2 px-9 py-4 rounded-full font-semibold text-base bg-[rgba(255,255,255,0.08)] text-white border border-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.15)] transition-all"
+                            >
+                                <Smartphone size={20} />
+                                Download App
+                            </button>
                         </div>
                     </div>
                 </div>
