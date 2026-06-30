@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Trash2 } from 'lucide-react';
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
 import { Shield, Mail, Trash2, Camera, Mic, Image, Key, BarChart3, Lock, Clock, Send } from 'lucide-react';
