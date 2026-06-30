@@ -1,23 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Copy, Check, Languages } from 'lucide-react';
+import { ArrowRight, Languages } from 'lucide-react';
 
 
 const LINGUALINK_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v1.0.0-lingualink/application-7de3731e-6f40-4947-a5ef-04092d21df0d.apk';
 
 const LinguaLinkDownload: React.FC = () => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(LINGUALINK_DOWNLOAD_URL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-hidden">
       <div className="fixed top-0 left-0 right-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-xl">
@@ -91,22 +79,7 @@ const LinguaLinkDownload: React.FC = () => {
               Download for Android
               <ArrowRight className="w-5 h-5" />
             </a>
-            <button
-              onClick={handleCopy}
-              className="inline-flex items-center justify-center h-14 px-8 rounded-xl font-bold text-base text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 transition-all w-full sm:w-auto gap-3"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-5 h-5 text-emerald-500" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <Copy className="w-5 h-5" />
-                  Copy link
-                </>
-              )}
-            </button>
+
           </motion.div>
 
           {/* Tagline */}
