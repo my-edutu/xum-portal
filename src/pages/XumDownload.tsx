@@ -4,7 +4,7 @@ import { ArrowRight, Copy, Check, Smartphone } from 'lucide-react';
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
 
-const XUM_DOWNLOAD_URL = 'https://expo.dev/artifacts/eas/aa7eCVVVNLRh2jB1R7SZH2.aab';
+const XUM_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v0.0.1/application-2f91ea1a-7336-4da9-b7b3-4a75beffbdea.apk';
 
 const XumDownload: React.FC = () => {
   const [copied, setCopied] = useState(false);

@@ -2,16 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+const XUM_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v0.0.1/application-2f91ea1a-7336-4da9-b7b3-4a75beffbdea.apk';
+
 interface HeroProps {
   onGetStarted?: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const navigate = useNavigate();
-
-  const handleGetStarted = () => {
-    navigate('/downloads');
-  };
 
   return (
     <section className="relative h-auto py-24 md:min-h-[90vh] flex items-center justify-center overflow-hidden px-6">
@@ -59,13 +57,15 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
-          <button
-            onClick={onGetStarted || handleGetStarted}
-            className="btn-base btn-primary btn-lg w-full sm:w-auto gap-3"
+          <a
+            href={XUM_DOWNLOAD_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-base btn-primary btn-lg w-full sm:w-auto gap-3 inline-flex items-center justify-center"
           >
             Download XUM AI
             <span className="material-symbols-outlined text-xl sm:text-2xl">bolt</span>
-          </button>
+          </a>
           <button
             onClick={() => navigate('/lingualink')}
             className="btn-base btn-secondary btn-lg w-full sm:w-auto text-body-base"
