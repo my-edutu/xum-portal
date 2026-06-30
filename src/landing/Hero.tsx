@@ -48,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-subheading-mobile md:text-subheading-desktop text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed tracking-tight font-medium"
         >
-          XUM AI powers LLMs and vision models with verified human data. LinguaLink lets you preserve and share your mother tongue. Download both and start shaping the future.
+          XUM AI powers LLMs and vision models with verified human data. LinguaLink AI lets you preserve and share your mother tongue. Download both and start shaping the future.
         </motion.p>
 
         <motion.div 
@@ -70,7 +70,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             onClick={() => navigate('/lingualink')}
             className="btn-base btn-secondary btn-lg w-full sm:w-auto text-body-base"
           >
-            Download LinguaLink
+            Download LinguaLink AI
           </button>
         </motion.div>
       </div>
