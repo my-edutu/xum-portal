@@ -11,7 +11,7 @@ const LinguaLinkDownload: React.FC = () => {
       <div className="fixed top-0 left-0 right-0 z-50 border-b border-orange-100 bg-white/80 backdrop-blur-xl">
         <nav className="container mx-auto px-6 py-5 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <span className="font-black text-2xl tracking-tighter uppercase text-slate-900">XUM</span>
+            <span className="font-bold text-2xl tracking-tighter uppercase text-slate-900">XUM</span>
             <span className="text-xs font-bold bg-orange-500 text-white px-2 py-0.5 rounded-md">AI</span>
           </a>
           <a href="/" className="text-sm font-semibold text-slate-500 hover:text-orange-500 transition-colors">
