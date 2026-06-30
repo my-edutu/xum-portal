@@ -10,6 +10,7 @@ import FAQ from './landing/FAQ';
 import Testimonials from './landing/Testimonials';
 import Footer from './landing/Footer';
 import { Download } from 'lucide-react';
+import TypewriterText from './components/TypewriterText';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fadeUp: any = {
@@ -101,8 +102,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                         <div className="inline-block px-4 py-1.5 rounded-full bg-[rgba(255,107,0,0.1)] border border-[rgba(255,107,0,0.25)] text-[#FF8A00] text-sm font-semibold mb-5">
                             Now available on iOS &amp; Android
                         </div>
-                        <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.1] mb-5 text-slate-900">
-                            Speak your roots. Share your voice.
+                        <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.1] mb-5 text-slate-900 min-h-[1.2em]">
+                            <TypewriterText
+                                words={['Speak your roots. Share your voice.', 'Speak your voice. Share your roots.']}
+                            />
                         </h2>
                         <p className="text-slate-500 text-lg max-w-[560px] mx-auto mb-10">
                             LinguaLink helps you learn, speak, and share your mother tongue with the world.
