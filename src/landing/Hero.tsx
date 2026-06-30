@@ -13,10 +13,6 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     navigate('/downloads');
   };
 
-  const handleBuyDatasets = () => {
-    navigate('/business');
-  };
-
   return (
     <section className="relative h-auto py-24 md:min-h-[90vh] flex items-center justify-center overflow-hidden px-6">
       <div className="absolute inset-0 -z-10 overflow-hidden bg-black">
@@ -43,9 +39,9 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-hero-mobile md:text-hero-desktop font-bold mb-6 text-white max-w-[14ch] sm:max-w-[16ch] mx-auto tracking-tighter"
+          className="text-hero-mobile md:text-hero-desktop font-bold mb-6 text-white max-w-[16ch] sm:max-w-[18ch] mx-auto tracking-tighter"
         >
-          The global human intelligence network.
+          Empowering AI with the world's languages and cultures.
         </motion.h1>
 
         <motion.p 
@@ -54,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-subheading-mobile md:text-subheading-desktop text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed tracking-tight font-medium"
         >
-          we deliver data creation, labeling, and RLHF at global scale — with cultural and linguistic coverage the world's models are missing.
+          XUM AI powers LLMs and vision models with verified human data. LinguaLink lets you preserve and share your mother tongue. Download both and start shaping the future.
         </motion.p>
 
         <motion.div 
@@ -67,14 +63,14 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             onClick={onGetStarted || handleGetStarted}
             className="btn-base btn-primary btn-lg w-full sm:w-auto gap-3"
           >
-            Download now
+            Download XUM AI
             <span className="material-symbols-outlined text-xl sm:text-2xl">bolt</span>
           </button>
           <button
-            onClick={handleBuyDatasets}
+            onClick={handleGetStarted}
             className="btn-base btn-secondary btn-lg w-full sm:w-auto text-body-base"
           >
-            Buy datasets / API
+            Download LinguaLink
           </button>
         </motion.div>
       </div>
