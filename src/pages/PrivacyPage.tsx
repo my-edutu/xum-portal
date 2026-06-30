@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Trash2 } from 'lucide-react';
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
 import { Shield, Mail, Trash2, Camera, Mic, Image, Key, BarChart3, Lock, Clock, Send } from 'lucide-react';
@@ -55,7 +56,8 @@ const sections = [
     icon: Trash2,
     title: 'Delete Your Account',
     content: 'To delete account, kindly send delete to the email',
-    deleteEmail: 'infolingualinkai@gmail.com'
+    deleteEmail: 'infolingualinkai@gmail.com',
+    deleteFormUrl: 'https://forms.gle/AtkRZh1ptKKYhKcEA'
   },
   {
     icon: Lock,
@@ -195,6 +197,19 @@ const PrivacyPage: React.FC = () => {
                 {/* Delete Account Form */}
                 {section.deleteEmail && (
                   <DeleteAccountForm email={section.deleteEmail} />
+                )}
+                {section.deleteFormUrl && (
+                  <div className="ml-4 mt-4">
+                    <a
+                      href={section.deleteFormUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-6 py-4 bg-red-600 hover:bg-red-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-red-500/20"
+                    >
+                      <Trash2 size={18} />
+                      Delete Account Form
+                    </a>
+                  </div>
                 )}
 
                 {/* Contact links */}
