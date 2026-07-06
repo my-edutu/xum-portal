@@ -4,10 +4,7 @@ import { Download, Smartphone, Globe, Mic, Gamepad2, MessageCircle, Award } from
 
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
-
-// APK artifacts published via GitHub Releases (built by our GitHub Action)
-const XUM_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v0.0.1/application-2f91ea1a-7336-4da9-b7b3-4a75beffbdea.apk';
-const LINGUALINK_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v1.0.0-lingualink/application-7de3731e-6f40-4947-a5ef-04092d21df0d.apk';
+import { XUM_APK_URL as XUM_DOWNLOAD_URL, LINGUALINK_APK_URL as LINGUALINK_DOWNLOAD_URL } from '../config';
 
 const XumSection: React.FC = () => {
   return (

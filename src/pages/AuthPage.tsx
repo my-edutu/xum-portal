@@ -9,9 +9,10 @@ const AuthPage: React.FC = () => {
     const intent = searchParams.get('intent');
     const { user, isLoaded } = useUser();
 
-    // Now only used for Admin Console
+    // Dedicated admin login (served at /admin/login). Regular users never
+    // land here — they enter via /get-started (web app or APK).
     const getRedirectPath = () => {
-        return '/admin/dashboard';
+        return '/admin';
     };
 
     // Check if user is already signed in and redirect appropriately

@@ -46,6 +46,14 @@ const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
           <Link className="hover:text-white transition-colors" to="/downloads">Downloads</Link>
           <Link className="hover:text-white transition-colors" to="/faq">FAQ</Link>
         </div>
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <button
+            onClick={() => (onGetStarted ? onGetStarted() : navigate('/get-started'))}
+            className="btn-base btn-primary btn-md px-6 md:px-8"
+          >
+            Get Started
+          </button>
+        </div>
       </nav>
     </header>
   );

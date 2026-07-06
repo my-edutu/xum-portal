@@ -1777,8 +1777,8 @@ export default function App() {
              <LogOut size={24} className="text-blue-500" />
           </div>
           <h2 className="text-2xl font-bold text-white outfit mb-2">Authentication Required</h2>
-          <p className="text-sm text-dim mb-8">Please log in through the main Business Hub to access the Admin Console.</p>
-          <a href="http://localhost:3001/auth?intent=admin" className="block w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-blue-500/20">
+          <p className="text-sm text-dim mb-8">Please sign in with an authorized admin account to access the Admin Console.</p>
+          <a href="/admin/login" className="block w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-blue-500/20">
             Go to Login
           </a>
         </div>

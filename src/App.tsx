@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useLocation 
 import { ClerkProvider, useUser, useClerk } from './context/ClerkProvider';
 import LandingPage from './LandingPage';
 import AuthPage from './pages/AuthPage';
+import GetStarted from './pages/GetStarted';
 import AdminPanelApp from '../AdminPanel/src/App';
 import { AdminProvider } from '../AdminPanel/src/contexts/AdminContext';
 import AboutUs from './pages/AboutUs';
@@ -86,8 +87,8 @@ function ProtectedAdminRoute({ children }: { children: React.ReactNode }) {
 
     if (!isLoaded || (user && isAuthorized === null)) return <div className="min-h-screen bg-[#020617] flex items-center justify-center"><Loader2 className="animate-spin text-orange-500" /></div>;
 
-    // Not logged in - redirect to auth with admin intent
-    if (!user) return <Navigate to="/auth?intent=admin" replace />;
+    // Not logged in - redirect to the dedicated admin login
+    if (!user) return <Navigate to="/admin/login" replace />;
 
     // Logged in but not admin - redirect to home page
     if (isAuthorized === false) return <Navigate to="/" replace />;
@@ -303,7 +304,7 @@ function Dashboard() {
                     <SidebarItem icon={<Users size={20} />} label="Participants" active={activeTab === 'workforce'} onClick={() => handleNavigation('workforce')} collapsed={!sidebarOpen} />
                     <SidebarItem icon={<Wallet size={20} />} label="Finance" active={activeTab === 'budget'} onClick={() => handleNavigation('budget')} collapsed={!sidebarOpen} />
                     {user?.primaryEmailAddress?.emailAddress && MASTER_ADMINS.includes(user.primaryEmailAddress.emailAddress) && (
-                        <SidebarItem icon={<Shield size={20} />} label="Admin Console" onClick={() => window.open('http://localhost:3002/', '_blank')} collapsed={!sidebarOpen} className="mt-4 border-t border-white/5 pt-4 text-orange-500 hover:text-orange-400" />
+                        <SidebarItem icon={<Shield size={20} />} label="Admin Console" onClick={() => window.open('/admin', '_blank')} collapsed={!sidebarOpen} className="mt-4 border-t border-white/5 pt-4 text-orange-500 hover:text-orange-400" />
                     )}
                 </nav>
                 <div className="p-3 border-t border-white/5 space-y-2">
@@ -354,26 +355,41 @@ export default function App() {
             <ScrollToTop />
             <ClerkProvider>
                 <Routes>
+                    {/* ---- Public site ---- */}
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/waitlist" element={<Navigate to="/downloads" replace />} />
-    <Route path="/business" element={<BusinessLanding />} />
-    <Route path="/auth" element={<AuthPage />} />
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/admin/dashboard" element={
-                        <AdminProvider>
-                            <AdminPanelApp />
-                        </AdminProvider>
-    } />
+                    <Route path="/business" element={<BusinessLanding />} />
+
+                    {/* ---- User entry: sign in online OR download the APK ---- */}
+                    <Route path="/get-started" element={<GetStarted />} />
+                    {/* Legacy /auth links (old admin terminal) → new locations */}
+                    <Route path="/auth" element={<Navigate to="/admin/login" replace />} />
+
+                    {/* ---- Company dashboard ---- */}
+                    <Route path="/dashboard" element={<Dashboard />} />
+
+                    {/* ---- Admin (separate namespace, own login, no public links) ---- */}
+                    <Route path="/admin/login" element={<AuthPage />} />
+                    <Route path="/admin" element={
+                        <ProtectedAdminRoute>
+                            <AdminProvider>
+                                <AdminPanelApp />
+                            </AdminProvider>
+                        </ProtectedAdminRoute>
+                    } />
+                    <Route path="/admin/dashboard" element={<Navigate to="/admin" replace />} />
+
+                    {/* ---- Info & downloads ---- */}
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
                     <Route path="/support" element={<SupportPage />} />
                     <Route path="/downloads" element={<Downloads />} />
                     <Route path="/xum" element={<XumDownload />} />
                     <Route path="/lingualink" element={<LinguaLinkDownload />} />
-    {/* Catch-all: redirect unknown routes to home */}
-    <Route path="*" element={<Navigate to="/" replace />} />
 
+                    {/* Catch-all: redirect unknown routes to home */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </ClerkProvider>
         </BrowserRouter>

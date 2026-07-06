@@ -57,23 +57,12 @@ const StatCounter = ({ value, label }: { value: string, label: string }) => {
     );
 };
 
-interface LandingPageProps {
-    onAdminClick?: () => void;
-}
-
-const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
+const LandingPage: React.FC = () => {
     const navigate = useNavigate();
 
+    // Single user entry point: choose the web app or the APK download.
     const handleGetStarted = () => {
-        navigate('/downloads');
-    };
-
-    const handleAdminClick = () => {
-        if (onAdminClick) {
-            onAdminClick();
-        } else {
-            navigate('/auth?intent=admin');
-        }
+        navigate('/get-started');
     };
 
     return (
@@ -112,7 +101,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                             Record voice clips, play games, and earn real rewards.
                         </p>
                         <button
-                            onClick={handleGetStarted}
+                            onClick={() => navigate('/lingualink')}
                             className="inline-flex items-center gap-2 px-9 py-4 rounded-full font-semibold text-base bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
                         >
                             <Download size={20} />
@@ -158,7 +147,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAdminClick }) => {
                 <FAQ />
             </motion.div>
 
-            <Footer onAdminClick={handleAdminClick} />
+            <Footer />
         </div>
     );
 };

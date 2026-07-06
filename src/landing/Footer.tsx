@@ -2,11 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface FooterProps {
-  onAdminClick?: () => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
+const Footer: React.FC = () => {
   const handleComingSoon = (e: React.MouseEvent) => {
     e.preventDefault();
     alert("This feature is coming soon!");
@@ -43,7 +39,7 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
             <div className="flex flex-col gap-3">
               <h4 className="text-sm font-medium text-white/50 mb-1">Company</h4>
               <Link className="text-sm lg:text-base text-slate-400 hover:text-white transition-colors" to="/about">About Us</Link>
-              <Link to="/auth?intent=admin" className="text-sm lg:text-base text-slate-400 hover:text-white transition-colors">Admin Console</Link>
+              <Link className="text-sm lg:text-base text-slate-400 hover:text-white transition-colors" to="/get-started">Get Started</Link>
             </div>
           </div>
         </div>

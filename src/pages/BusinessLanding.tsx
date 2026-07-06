@@ -37,7 +37,7 @@ const BusinessLanding: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-[#020617] text-slate-100 selection:bg-blue-500/30">
-            <Navbar onGetStarted={() => navigate('/downloads')} />
+            <Navbar />
 
             {/* Hero Section - Left Aligned & Premium */}
             <section className="relative pt-64 pb-48 px-6 overflow-hidden min-h-[90vh] flex items-center">
@@ -259,7 +259,7 @@ const BusinessLanding: React.FC = () => {
                 </div>
             </section>
 
-            <Footer onAdminClick={() => navigate('/admin')} />
+            <Footer />
         </div>
     );
 };
