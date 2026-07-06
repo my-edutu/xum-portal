@@ -19,16 +19,6 @@ const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isBusinessPage = location.pathname === '/business';
-
-  const handleAction = () => {
-    if (onGetStarted) {
-      onGetStarted();
-      return;
-    }
-    navigate('/downloads');
-  };
-
   const handleHome = () => {
     if (location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,14 +45,6 @@ const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
           <Link className="hover:text-white transition-colors" to="/business">Enterprise</Link>
           <Link className="hover:text-white transition-colors" to="/downloads">Downloads</Link>
           <Link className="hover:text-white transition-colors" to="/faq">FAQ</Link>
-        </div>
-        <div className="flex items-center gap-4 flex-shrink-0">
-          <button
-            onClick={handleAction}
-            className="btn-base btn-primary btn-md px-6 md:px-8"
-          >
-            {isBusinessPage ? 'Download App' : 'Download now'}
-          </button>
         </div>
       </nav>
     </header>
