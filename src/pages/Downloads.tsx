@@ -5,6 +5,10 @@ import { Download, Smartphone, Globe, Mic, Gamepad2, MessageCircle, Award } from
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
 
+// APK artifacts published via GitHub Releases (built by our GitHub Action)
+const XUM_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v0.0.1/application-2f91ea1a-7336-4da9-b7b3-4a75beffbdea.apk';
+const LINGUALINK_DOWNLOAD_URL = 'https://github.com/my-edutu/xum-portal/releases/download/v1.0.0-lingualink/application-7de3731e-6f40-4947-a5ef-04092d21df0d.apk';
+
 const XumSection: React.FC = () => {
   return (
     <div className="bg-white/[0.02] border border-white/5 rounded-[2rem] p-8 md:p-10 hover:border-blue-500/20 transition-colors duration-500">
@@ -35,8 +39,9 @@ const XumSection: React.FC = () => {
       </div>
 
       <a
-        href="/apks/xum-ai.apk"
-        download
+        href={XUM_DOWNLOAD_URL}
+        target="_blank"
+        rel="noreferrer"
         className="inline-flex items-center gap-3 btn-base bg-blue-600 hover:bg-blue-500 text-white btn-lg w-full sm:w-auto"
       >
         <Download className="w-5 h-5" />
@@ -147,8 +152,9 @@ const Downloads: React.FC = () => {
                 </div>
 
                 <a
-                  href="/apks/lingualink.apk"
-                  download
+                  href={LINGUALINK_DOWNLOAD_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
                 >
                   <Download size={18} />
