@@ -6,9 +6,13 @@
  */
 
 // The user-facing web app (the "XUM AI" web build; dev server runs on port 3000).
-// Set VITE_APP_URL to the deployed web-app domain in production.
+// VITE_APP_URL can override this per environment. Production must never fall
+// back to a developer's localhost URL.
+const configuredWebAppUrl = (import.meta as any).env?.VITE_APP_URL?.trim();
+const isProductionBuild = Boolean((import.meta as any).env?.PROD);
+
 export const WEB_APP_URL: string =
-    (import.meta as any).env?.VITE_APP_URL || 'http://localhost:3000';
+    configuredWebAppUrl || (isProductionBuild ? 'https://app.xumai.app' : 'http://localhost:3000');
 
 // APK artifacts published via GitHub Releases (built by our GitHub Action)
 export const XUM_APK_URL =
