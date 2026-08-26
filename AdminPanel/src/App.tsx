@@ -8,7 +8,6 @@ import {
   LogOut,
   Search,
   ExternalLink,
-  Cpu,
   Database,
   BarChart3,
   Settings,
@@ -27,6 +26,14 @@ import type { WorkerPayout } from './utils/financialService';
 import { useAdmin } from './contexts/AdminContext';
 
 type View = 'overview' | 'users' | 'tasks' | 'linguasense' | 'payouts' | 'companies' | 'api_keys' | 'featured_tasks' | 'settings';
+
+/**
+ * Return the first record from a Supabase relationship, regardless of whether
+ * the client returns a singular object or a one-item array.
+ */
+function getRelatedRecord<T>(relation: T | T[] | null | undefined): T | undefined {
+  return Array.isArray(relation) ? relation[0] : relation ?? undefined;
+}
 
 // --- Shared Components ---
 const AdminCard = ({ title, children, className = "" }: any) => (
@@ -922,7 +929,8 @@ const FeaturedTasksManagement = () => {
       .select('*')
       .order('display_order', { ascending: true });
 
-    if (!cards) {
+    if (error || !cards) {
+      if (error) console.warn('Failed to load featured tasks:', error.message);
       setFeaturedCards([]);
       setLoading(false);
       return;
@@ -1083,15 +1091,20 @@ const FeaturedTasksManagement = () => {
 
     const csvContent = "data:text/csv;charset=utf-8," 
       + ["Date,User,Email,Task,Type,Status,Content"].join(",") + "\n"
-      + allSubs.map(s => [
-          new Date(s.submitted_at).toLocaleDateString(),
-          s.users?.full_name?.replace(/,/g, ''),
-          s.users?.email,
-          s.tasks?.title?.replace(/,/g, ''),
-          s.tasks?.task_type,
-          s.status,
-          JSON.stringify(s.submission_data).replace(/"/g, '""').replace(/,/g, ';')
-        ].join(",")).join("\n");
+      + allSubs.map(s => {
+          const user = getRelatedRecord(s.users);
+          const task = getRelatedRecord(s.tasks);
+
+          return [
+            new Date(s.submitted_at).toLocaleDateString(),
+            user?.full_name?.replace(/,/g, ''),
+            user?.email,
+            task?.title?.replace(/,/g, ''),
+            task?.task_type,
+            s.status,
+            JSON.stringify(s.submission_data).replace(/"/g, '""').replace(/,/g, ';')
+          ].join(",");
+        }).join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
