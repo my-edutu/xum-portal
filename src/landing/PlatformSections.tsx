@@ -68,17 +68,17 @@ const PlatformSections: React.FC = () => {
       </section>
 
       {/* Earn Section */}
-      <section className="py-20 bg-slate-50 text-slate-900">
+      <section className="py-20 bg-[#020617] text-slate-100">
         <div className="container max-w-5xl mx-auto px-6">
           <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-section-mobile md:text-section-desktop font-bold mb-4 tracking-tighter text-slate-900">Earn by teaching AI.</h2>
-            <p className="text-slate-700 text-subheading-mobile md:text-subheading-desktop max-w-lg font-medium">
+            <h2 className="text-section-mobile md:text-section-desktop font-bold mb-4 tracking-tighter text-white">Earn by teaching AI.</h2>
+            <p className="text-slate-300 text-subheading-mobile md:text-subheading-desktop max-w-lg font-medium">
               Your perspective is valuable. Share it with AI labs and get paid for your insight.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-blue-50 via-white to-blue-100/70 border border-blue-200 shadow-sm">
+            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-blue-500/10 via-slate-900 to-blue-500/5 border border-blue-500/20 shadow-sm">
               <h3 className="text-subheading-mobile md:text-subheading-desktop font-bold mb-8 flex items-center gap-3 tracking-tight capitalize">
                 <span className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] shadow-sm">1</span>
                 Flexible work
@@ -91,15 +91,15 @@ const PlatformSections: React.FC = () => {
                   <div key={idx} className="flex gap-4">
                     <span className="material-symbols-outlined text-blue-600 text-xl">done_all</span>
                     <div>
-                      <p className="font-bold text-body-base text-slate-900 mb-1">{item.title}</p>
-                      <p className="text-slate-600 text-small-base leading-relaxed">{item.detail}</p>
+                      <p className="font-bold text-body-base text-white mb-1">{item.title}</p>
+                      <p className="text-slate-400 text-small-base leading-relaxed">{item.detail}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-violet-50 via-white to-violet-100/70 border border-violet-200 shadow-sm">
+            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-violet-500/10 via-slate-900 to-violet-500/5 border border-violet-500/20 shadow-sm">
               <h3 className="text-subheading-mobile md:text-subheading-desktop font-bold mb-8 flex items-center gap-3 tracking-tight capitalize">
                 <span className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-[10px] shadow-sm">2</span>
                 Safe payouts
@@ -112,8 +112,8 @@ const PlatformSections: React.FC = () => {
                   <div key={idx} className="flex gap-4">
                     <span className="material-symbols-outlined text-violet-600 text-xl">verified</span>
                     <div>
-                      <p className="font-bold text-body-base text-slate-900 mb-1">{item.title}</p>
-                      <p className="text-slate-600 text-small-base leading-relaxed">{item.detail}</p>
+                      <p className="font-bold text-body-base text-white mb-1">{item.title}</p>
+                      <p className="text-slate-400 text-small-base leading-relaxed">{item.detail}</p>
                     </div>
                   </div>
                 ))}
