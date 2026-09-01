@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Globe, Smartphone, ArrowRight, Download, Languages } from 'lucide-react';
+import { ArrowLeft, Globe, Smartphone, ArrowRight, Download } from 'lucide-react';
 import { WEB_APP_URL, XUM_APK_URL } from '../config';
 
 /**
@@ -11,8 +11,6 @@ import { WEB_APP_URL, XUM_APK_URL } from '../config';
  *   2. Download the APK → native Android app
  */
 const GetStarted: React.FC = () => {
-    const navigate = useNavigate();
-
     return (
         <div className="min-h-screen bg-[#020617] selection:bg-blue-500/30 flex flex-col items-center justify-center px-6 py-16 relative overflow-hidden">
             {/* Background glows */}
@@ -94,13 +92,6 @@ const GetStarted: React.FC = () => {
                         <ArrowLeft size={14} />
                         Back to Home
                     </Link>
-                    <button
-                        onClick={() => navigate('/lingualink')}
-                        className="text-xs text-slate-500 hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                        <Languages size={14} />
-                        Looking for LinguaLink AI?
-                    </button>
                 </motion.div>
             </div>
         </div>

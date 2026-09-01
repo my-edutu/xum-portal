@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Smartphone, Globe, Mic, Gamepad2, MessageCircle, Award } from 'lucide-react';
+import { Download, Smartphone, Globe } from 'lucide-react';
 
 import Navbar from '../landing/Navbar';
 import Footer from '../landing/Footer';
-import { XUM_APK_URL as XUM_DOWNLOAD_URL, LINGUALINK_APK_URL as LINGUALINK_DOWNLOAD_URL } from '../config';
+import { XUM_APK_URL as XUM_DOWNLOAD_URL } from '../config';
 
 const XumSection: React.FC = () => {
   return (
@@ -48,13 +48,6 @@ const XumSection: React.FC = () => {
   );
 };
 
-const features = [
-  { icon: Mic, label: 'Record & Share', desc: 'Speak a phrase from your language and share it. Voice or video — you choose.' },
-  { icon: MessageCircle, label: 'Duet with Others', desc: 'Reply to clips with your own. Like a duet — but with words from your mother tongue.' },
-  { icon: Award, label: 'Earn Rewards', desc: 'Help check clips for accuracy and earn real money. The more you help, the more you make.' },
-  { icon: Gamepad2, label: 'Play Language Games', desc: 'Challenge friends to word games. Learn new words without even trying.' },
-];
-
 const Downloads: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#020617] text-slate-100 selection:bg-blue-500/30 overflow-hidden">
@@ -69,10 +62,10 @@ const Downloads: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-semibold mb-4 tracking-tight">
-              Download Our <span className="text-blue-500">Apps</span>
+              Download <span className="text-blue-500">XUM AI</span>
             </h1>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Get the latest versions of XUM AI and LinguaLink AI.
+              Get the latest version of XUM AI.
             </p>
           </motion.div>
 
@@ -86,79 +79,6 @@ const Downloads: React.FC = () => {
               <XumSection />
             </motion.div>
 
-            {/* LinguaLink AI */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative overflow-hidden bg-white border border-orange-200 rounded-[2rem] p-8 md:p-10"
-            >
-              <div className="absolute w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(255,107,0,0.12),transparent_70%)] top-[-150px] right-[-150px] pointer-events-none"></div>
-              <div className="absolute w-[350px] h-[350px] bg-[radial-gradient(circle,rgba(255,138,0,0.08),transparent_70%)] bottom-[-100px] left-[-100px] pointer-events-none"></div>
-
-              <div className="relative z-10">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-14 h-14 bg-[rgba(255,107,0,0.15)] rounded-2xl flex items-center justify-center shrink-0">
-                    <span className="text-2xl font-black text-[#FF8A00]">L</span>
-                  </div>
-                  <div>
-                    <div className="text-sm font-extrabold text-[#FF8A00] tracking-widest uppercase">
-                      LinguaLink <span className="text-slate-900">AI</span>
-                    </div>
-                    <p className="text-slate-500 text-sm mt-0.5">Speak Your Roots</p>
-                  </div>
-                </div>
-
-                <div className="inline-block px-3 py-1 rounded-full bg-[rgba(255,107,0,0.15)] border border-[rgba(255,107,0,0.3)] text-[#FF8A00] text-xs font-semibold mb-5">
-                  Now available on iOS &amp; Android
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">
-                  Speak your roots. Share your voice.
-                </h3>
-                <p className="text-slate-500 leading-relaxed mb-6 max-w-2xl">
-                  LinguaLink AI helps you learn, speak, and share your mother tongue with the world.
-                  Record voice clips, make videos, play games, and earn real rewards.
-                </p>
-
-                {/* Feature mini-cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                  {features.map((f, i) => {
-                    const Icon = f.icon;
-                    return (
-                      <div key={i} className="flex items-start gap-3 bg-orange-50 border border-orange-200 rounded-xl p-4">
-                        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#FF8A0022] to-[#FF6B0011] flex items-center justify-center shrink-0">
-                          <Icon className="w-4 h-4 text-[#FF8A00]" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-slate-800">{f.label}</p>
-                          <p className="text-xs text-slate-500">{f.desc}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3 mb-6">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full text-xs text-slate-500">
-                    <Smartphone size={14} /> iOS — Coming Soon
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full text-xs text-slate-500">
-                    <Smartphone size={14} /> Android — Coming Soon
-                  </span>
-                </div>
-
-                <a
-                  href={LINGUALINK_DOWNLOAD_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
-                >
-                  <Download size={18} />
-                  Download Now
-                </a>
-              </div>
-            </motion.div>
           </div>
         </div>
       </main>

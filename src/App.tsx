@@ -19,7 +19,6 @@ import PrivacyPage from './pages/PrivacyPage';
 import SupportPage from './pages/SupportPage';
 import Downloads from './pages/Downloads';
 import XumDownload from './pages/XumDownload';
-import LinguaLinkDownload from './pages/LinguaLinkDownload';
 import NewWorkspaceModal from './components/NewWorkspaceModal';
 import ScrollToTop from './components/ScrollToTop';
 import { supabase } from './supabaseClient';
@@ -386,7 +385,6 @@ export default function App() {
                     <Route path="/support" element={<SupportPage />} />
                     <Route path="/downloads" element={<Downloads />} />
                     <Route path="/xum" element={<XumDownload />} />
-                    <Route path="/lingualink" element={<LinguaLinkDownload />} />
 
                     {/* Catch-all: redirect unknown routes to home */}
                     <Route path="*" element={<Navigate to="/" replace />} />

@@ -9,8 +9,6 @@ import CallToAction from './landing/CallToAction';
 import FAQ from './landing/FAQ';
 import Testimonials from './landing/Testimonials';
 import Footer from './landing/Footer';
-import { Download } from 'lucide-react';
-import TypewriterText from './components/TypewriterText';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fadeUp: any = {
@@ -74,41 +72,6 @@ const LandingPage: React.FC = () => {
 
             <motion.div {...fadeUp}>
                 <Marquee />
-            </motion.div>
-
-            {/* LinguaLink AI Section */}
-            <motion.div
-                {...fadeUp}
-                className="relative overflow-hidden bg-white border-y border-orange-200"
-            >
-                <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,107,0,0.08),transparent_70%)] top-[-200px] right-[-200px] pointer-events-none"></div>
-                <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(255,138,0,0.05),transparent_70%)] bottom-[-150px] left-[-150px] pointer-events-none"></div>
-                <div className="container max-w-6xl mx-auto px-6 py-16 md:py-24 relative z-10 text-center">
-                    <div className="max-w-3xl mx-auto">
-                        <div className="text-sm font-extrabold text-[#FF8A00] tracking-widest uppercase mb-6">
-                            LinguaLink <span className="text-slate-900">AI</span>
-                        </div>
-                        <div className="inline-block px-4 py-1.5 rounded-full bg-[rgba(255,107,0,0.1)] border border-[rgba(255,107,0,0.25)] text-[#FF8A00] text-sm font-semibold mb-5">
-                            Now available on iOS &amp; Android
-                        </div>
-                        <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.1] mb-5 text-slate-900 min-h-[1.2em]">
-                            <TypewriterText
-                                words={['Speak your roots. Share your voice.', 'Speak your voice. Share your roots.']}
-                            />
-                        </h2>
-                        <p className="text-slate-500 text-lg max-w-[560px] mx-auto mb-10">
-                            LinguaLink AI helps you learn, speak, and share your mother tongue with the world.
-                            Record voice clips, play games, and earn real rewards.
-                        </p>
-                        <button
-                            onClick={() => navigate('/lingualink')}
-                            className="inline-flex items-center gap-2 px-9 py-4 rounded-full font-semibold text-base bg-gradient-to-r from-[#FF8A00] to-[#FF6B00] text-white shadow-[0_4px_20px_rgba(255,107,0,0.4)] hover:shadow-[0_8px_30px_rgba(255,107,0,0.6)] hover:-translate-y-0.5 transition-all"
-                        >
-                            <Download size={20} />
-                            Get Started
-                        </button>
-                    </div>
-                </div>
             </motion.div>
 
             {/* Network in Motion Stats */}

@@ -17,6 +17,3 @@ export const WEB_APP_URL: string =
 // APK artifacts published via GitHub Releases (built by our GitHub Action)
 export const XUM_APK_URL =
     'https://github.com/my-edutu/xum-portal/releases/download/v0.0.1/application-2f91ea1a-7336-4da9-b7b3-4a75beffbdea.apk';
-
-export const LINGUALINK_APK_URL =
-    'https://github.com/my-edutu/xum-portal/releases/download/v1.0.0-lingualink/application-7de3731e-6f40-4947-a5ef-04092d21df0d.apk';

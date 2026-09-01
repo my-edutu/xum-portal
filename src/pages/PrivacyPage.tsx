@@ -55,7 +55,7 @@ const sections = [
     icon: Trash2,
     title: 'Delete Your Account',
     content: 'To delete account, kindly send delete to the email',
-    deleteEmail: 'infolingualinkai@gmail.com',
+    deleteEmail: 'info@xumai.app',
     deleteFormUrl: 'https://forms.gle/AtkRZh1ptKKYhKcEA'
   },
   {
