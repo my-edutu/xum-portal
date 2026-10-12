@@ -5,7 +5,7 @@ const dist = resolve(root, 'dist');
 const routes = JSON.parse(readFileSync(resolve(root, 'src/seo/routes.json'), 'utf8'));
 const source = readFileSync(resolve(dist, 'index.html'), 'utf8');
 const base = 'https://xumai.app';
-const image = base + '/og-image.svg';
+const image = base + '/og-image.png';
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function addSeo(html, route, meta) {
   const url = base + (route === '/' ? '/' : route);
@@ -18,6 +18,8 @@ function addSeo(html, route, meta) {
     ['property', 'og:description', meta.description],
     ['property', 'og:url', url],
     ['property', 'og:image', image],
+    ['property', 'og:image:width', '600'],
+    ['property', 'og:image:height', '315'],
     ['property', 'og:image:alt', 'XUM AI — Human intelligence. Better AI.'],
     ['name', 'twitter:card', 'summary_large_image'],
     ['name', 'twitter:title', meta.title],
@@ -26,7 +28,7 @@ function addSeo(html, route, meta) {
   ].map(([attr,key,value]) => `<meta ${attr}="${esc(key)}" content="${esc(value)}" />`).join('\n  ');
   const schema = route === '/' ? '\n  <script type="application/ld+json">' + JSON.stringify({
     '@context': 'https://schema.org', '@type': 'Organization', name: 'XUM AI',
-    url: base + '/', logo: base + '/favicon.svg',
+    url: base + '/', logo: base + '/apple-touch-icon.png',
     description: routes['/'].description
   }).replace(/</g, '\\u003c') + '</script>' : '';
   return html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(meta.title)}</title>`)

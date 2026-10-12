@@ -4,7 +4,7 @@ import pageMetadata from './routes.json';
 
 type PageMeta = { title: string; description: string; index: boolean };
 const SITE_ORIGIN = 'https://xumai.app';
-const IMAGE = SITE_ORIGIN + '/og-image.svg';
+const IMAGE = SITE_ORIGIN + '/og-image.png';
 const routes = pageMetadata as Record<string, PageMeta>;
 
 function upsertMeta(attribute: 'name' | 'property', key: string, value: string) {
@@ -28,6 +28,8 @@ export function RouteSeo() {
     upsertMeta('property', 'og:description', meta.description);
     upsertMeta('property', 'og:url', url);
     upsertMeta('property', 'og:image', IMAGE);
+    upsertMeta('property', 'og:image:width', '600');
+    upsertMeta('property', 'og:image:height', '315');
     upsertMeta('property', 'og:image:alt', 'XUM AI — Human intelligence. Better AI.');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', meta.title);
