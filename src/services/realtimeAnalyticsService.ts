@@ -76,8 +76,8 @@ class RealtimeAnalyticsService {
     private companyId: string | null = null;
     private channels: Map<string, RealtimeChannel> = new Map();
     private callbacks: RealtimeCallback = {};
-    private statsPollingInterval: NodeJS.Timer | null = null;
-    private anomalyCheckInterval: NodeJS.Timer | null = null;
+    private statsPollingInterval: ReturnType<typeof setInterval> | null = null;
+    private anomalyCheckInterval: ReturnType<typeof setInterval> | null = null;
 
     setCompanyId(id: string) {
         this.companyId = id;

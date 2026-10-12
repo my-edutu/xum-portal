@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+<title id="t">XUM AI — Human intelligence. Better AI.</title><desc id="d">XUM AI AI data collection and validation across voice, image, video and language.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#071328"/><stop offset="1" stop-color="#153867"/></linearGradient><linearGradient id="glow"><stop stop-color="#159eea"/><stop offset="1" stop-color="#f99437"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/><circle cx="1030" cy="315" r="242" fill="none" stroke="#2472a6" stroke-width="3"/><circle cx="1030" cy="315" r="187" fill="none" stroke="#2a8bcb" stroke-width="3"/><circle cx="1030" cy="315" r="127" fill="none" stroke="#367fc0" stroke-width="3"/>
+<path d="M790 105 1070 365 1190 190M740 480 1040 320 1170 550" stroke="url(#glow)" stroke-width="5" fill="none" opacity=".7"/>
+<g transform="translate(76 68) scale(1.65)"><rect width="64" height="64" rx="14" fill="#101f40"/><path d="M9 12h14l16 19-9 10zM38 12h15L26 52H10z" fill="#26a9fc"/><path d="m39 36 15 16H39L31 43z" fill="#ff9b36"/></g>
+<text x="207" y="161" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="86">XUM <tspan fill="#26a9fc">AI</tspan></text>
+<text x="78" y="321" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="64">Human intelligence.</text><text x="78" y="403" fill="#26a9fc" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="78">Better AI.</text>
+<text x="80" y="496" fill="#c1d4ea" font-family="Arial,Helvetica,sans-serif" font-size="30">Voice  ·  Image  ·  Video  ·  Language</text><rect y="613" width="1200" height="17" fill="#ff9b36"/></svg>
