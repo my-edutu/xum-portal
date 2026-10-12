@@ -8,7 +8,7 @@ const base = 'https://xumai.app';
 const image = base + '/og-image.png';
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function addSeo(html, route, meta) {
-  const url = base + (route === '/' ? '/' : route);
+  const url = base + (route === '/' ? '/' : route + '/');
   const tags = [
     ['name', 'description', meta.description],
     ['name', 'robots', 'index,follow,max-image-preview:large'],
@@ -32,7 +32,7 @@ function addSeo(html, route, meta) {
     description: routes['/'].description
   }).replace(/</g, '\\u003c') + '</script>' : '';
   return html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(meta.title)}</title>`)
-    .replace(/<meta\s+name="description"[^>]*\/?>/i, '')
+    .replace(/<meta\s+name="(?:description|robots)"[^>]*\/?>/gi, '')
     .replace('</head>', `  <link rel="canonical" href="${esc(url)}" />\n  ${tags}${schema}\n</head>`);
 }
 for (const [route, meta] of Object.entries(routes)) {

@@ -18,7 +18,7 @@ export function RouteSeo() {
   useEffect(() => {
     const route = pathname.replace(/\/$/, '') || '/';
     const meta = routes[route] ?? { title: 'XUM AI | Global Intelligence Platform', description: 'Explore XUM AI, a global AI data collection and validation platform.', index: false };
-    const url = SITE_ORIGIN + (route === '/' ? '/' : route);
+    const url = SITE_ORIGIN + (route === '/' ? '/' : route + '/');
     document.title = meta.title;
     upsertMeta('name', 'description', meta.description);
     upsertMeta('name', 'robots', meta.index ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive');

@@ -1,0 +1,65 @@
+name: SEO site and admin checks
+on:
+  pull_request:
+  push:
+    branches:
+      - feat/xum-seo-brand-assets-20261012
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Inspect generated public SEO pages and private fallback
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import assert from 'node:assert/strict';
+          const routes = JSON.parse(readFileSync('src/seo/routes.json','utf8'));
+          const sitemap = readFileSync('dist/sitemap.xml','utf8');
+          for (const [path, meta] of Object.entries(routes)) {
+            if (!meta.index) continue;
+            const html = readFileSync('dist' + (path === '/' ? '/index.html' : path + '/index.html'),'utf8');
+            assert.ok(html.includes('<title>' + meta.title + '</title>'), path + ' page title');
+            assert.ok(html.includes('content="index,follow,max-image-preview:large"'), path + ' robots');
+            assert.ok(html.includes('og-image.png'), path + ' social preview');
+            const canonical = 'https://xumai.app' + (path === '/' ? '/' : path + '/');
+            assert.ok(html.includes('rel="canonical" href="' + canonical + '"'), path + ' canonical');
+            assert.ok(sitemap.includes('<loc>' + canonical + '</loc>'), path + ' sitemap');
+          }
+          assert.ok(!sitemap.includes('/dashboard'), 'private dashboard must not be in sitemap');
+          assert.ok(!sitemap.includes('/admin'), 'admin must not be in sitemap');
+          console.log('SEO public pages, private route exclusion and sitemap verified.');
+          NODE
+  admin:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AdminPanel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: AdminPanel/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Verify private admin metadata and favicon assets
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, statSync } from 'node:fs';
+          import assert from 'node:assert/strict';
+          const html = readFileSync('dist/index.html','utf8');
+          assert.match(html, /name="robots" content="noindex,nofollow/);
+          assert.match(html, /favicon-32\.png/);
+          assert.ok(statSync('dist/favicon-32.png').size > 0);
+          assert.ok(statSync('dist/apple-touch-icon.png').size > 0);
+          assert.ok(statSync('dist/og-image.png').size > 0);
+          console.log('Private admin metadata and branded assets verified.');
+          NODE
