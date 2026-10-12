@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import pageMetadata from './routes.json';
 
 type PageMeta = { title: string; description: string; index: boolean };
-const SITE_ORIGIN = 'https://xumai.app';
+const SITE_ORIGIN = 'https://www.xumai.app';
 const IMAGE = SITE_ORIGIN + '/og-image.png';
 const routes = pageMetadata as Record<string, PageMeta>;
 

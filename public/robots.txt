@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /auth
 Disallow: /dashboard
-Sitemap: https://xumai.app/sitemap.xml
+Sitemap: https://www.xumai.app/sitemap.xml
