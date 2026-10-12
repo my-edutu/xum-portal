@@ -5,7 +5,7 @@
  * All sensitive operations go through Supabase RPC functions that enforce RLS.
  */
 
-import { supabase } from '../utils/supabaseClient';
+import { supabase } from '../supabaseClient';
 
 // Types
 export interface DataAsset {

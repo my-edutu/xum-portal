@@ -301,14 +301,14 @@ function MetricCard({ title, value, prefix = "", suffix = "", icon, color, glow,
 
             {/* Background Icon Decoration */}
             <div className="absolute -right-4 -bottom-4 opacity-[0.07] text-white rotate-12 group-hover:rotate-0 transition-transform duration-700 pointer-events-none">
-                {React.cloneElement(icon as React.ReactElement, { size: 160 })}
+                {React.cloneElement(icon as React.ReactElement<{ size?: number; className?: string }>, { size: 160 })}
             </div>
 
             <div className="relative z-10 flex flex-col h-full w-full">
                 {/* Header: Icon + Title on same line */}
                 <div className="flex items-center gap-3 mb-8 w-full">
                     <div className="p-2.5 bg-white/20 backdrop-blur-md rounded-xl border border-white/20 shadow-lg">
-                        {React.cloneElement(icon as React.ReactElement, { size: 18, className: "text-white" })}
+                        {React.cloneElement(icon as React.ReactElement<{ size?: number; className?: string }>, { size: 18, className: "text-white" })}
                     </div>
                     <h4 className="text-[11px] font-black text-white/90 uppercase tracking-[0.2em] truncate">
                         {title}
