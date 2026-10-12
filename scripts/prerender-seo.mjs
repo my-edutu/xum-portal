@@ -4,7 +4,7 @@ const root = process.cwd();
 const dist = resolve(root, 'dist');
 const routes = JSON.parse(readFileSync(resolve(root, 'src/seo/routes.json'), 'utf8'));
 const source = readFileSync(resolve(dist, 'index.html'), 'utf8');
-const base = 'https://xumai.app';
+const base = 'https://www.xumai.app';
 const image = base + '/og-image.png';
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function addSeo(html, route, meta) {

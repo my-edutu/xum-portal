@@ -30,7 +30,7 @@ jobs:
             assert.ok(html.includes('<title>' + escapedTitle + '</title>'), path + ' page title');
             assert.ok(html.includes('content="index,follow,max-image-preview:large"'), path + ' robots');
             assert.ok(html.includes('og-image.png'), path + ' social preview');
-            const canonical = 'https://xumai.app' + (path === '/' ? '/' : path + '/');
+            const canonical = 'https://www.xumai.app' + (path === '/' ? '/' : path + '/');
             assert.ok(html.includes('rel="canonical" href="' + canonical + '"'), path + ' canonical');
             assert.ok(sitemap.includes('<loc>' + canonical + '</loc>'), path + ' sitemap');
           }
