@@ -1751,6 +1751,14 @@ const Sidebar = ({ activeView, navigateTo, signOut }: any) => (
 
 export default function App() {
   const [activeView, setActiveView] = useState<View>('overview');
+  // Keep private admin page titles accurate without exposing them to search engines.
+  useEffect(() => {
+    const labels: Record<View, string> = {"overview":"Overview","users":"User Management","tasks":"Task Moderation","linguasense":"Language Data","payouts":"Payouts","companies":"Companies","api_keys":"API Keys","featured_tasks":"Featured Tasks","settings":"Settings"};
+    document.title = `${labels[activeView]} | XUM AI Admin`;
+    let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
+    robots.content = 'noindex,nofollow,noarchive,nosnippet';
+  }, [activeView]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { admin, isAdmin, loading, signOut } = useAdmin();
 

@@ -1,0 +1,77 @@
+{
+  "/": {
+    "title": "XUM AI | Human Intelligence for Better AI",
+    "description": "XUM AI connects global contributors with data collection and validation opportunities, helping teams create reliable, culturally diverse datasets for better AI.",
+    "index": true
+  },
+  "/about": {
+    "title": "About XUM AI | Human-Powered AI Data",
+    "description": "Learn how XUM AI brings people and organizations together for human-led AI data collection, validation, and language representation.",
+    "index": true
+  },
+  "/business": {
+    "title": "AI Data for Enterprises | XUM AI",
+    "description": "Create AI data collection projects, validate submissions, track progress and explore culturally diverse datasets with XUM AI enterprise solutions.",
+    "index": true
+  },
+  "/get-started": {
+    "title": "Get Started with XUM AI | Contributors & Teams",
+    "description": "Explore how to join XUM AI, contribute human intelligence to AI projects and access the contributor application.",
+    "index": true
+  },
+  "/faq": {
+    "title": "Frequently Asked Questions | XUM AI",
+    "description": "Answers about XUM AI contributors, tasks, data validation, enterprise data collection, and using the platform.",
+    "index": true
+  },
+  "/downloads": {
+    "title": "Download XUM AI | Contributor App",
+    "description": "Find the XUM AI contributor app and learn how to take part in voice, image, video and language data tasks.",
+    "index": true
+  },
+  "/xum": {
+    "title": "XUM AI App | Explore the Contributor Platform",
+    "description": "Discover the XUM AI contributor experience for AI data collection, validation and rewards.",
+    "index": true
+  },
+  "/privacy": {
+    "title": "Privacy Policy | XUM AI",
+    "description": "Read how XUM AI handles personal information and protects contributors, organizations and platform data.",
+    "index": true
+  },
+  "/support": {
+    "title": "Support & Contact | XUM AI",
+    "description": "Find support for XUM AI accounts, contributor tasks, payments and enterprise data projects.",
+    "index": true
+  },
+  "/dashboard": {
+    "title": "Company Dashboard | XUM AI",
+    "description": "Private XUM AI enterprise workspace.",
+    "index": false
+  },
+  "/admin": {
+    "title": "Admin Dashboard | XUM AI",
+    "description": "Private XUM AI administration workspace.",
+    "index": false
+  },
+  "/admin/login": {
+    "title": "Admin Sign In | XUM AI",
+    "description": "Authorized administrators only.",
+    "index": false
+  },
+  "/admin/dashboard": {
+    "title": "Admin Dashboard | XUM AI",
+    "description": "Private XUM AI administration workspace.",
+    "index": false
+  },
+  "/auth": {
+    "title": "Sign In | XUM AI",
+    "description": "Account sign-in.",
+    "index": false
+  },
+  "/waitlist": {
+    "title": "Get Started | XUM AI",
+    "description": "Continue to XUM AI downloads.",
+    "index": false
+  }
+}

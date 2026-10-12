@@ -21,6 +21,7 @@ import Downloads from './pages/Downloads';
 import XumDownload from './pages/XumDownload';
 import NewWorkspaceModal from './components/NewWorkspaceModal';
 import ScrollToTop from './components/ScrollToTop';
+import { RouteSeo } from './seo/RouteSeo';
 import { supabase } from './supabaseClient';
 import {
     LayoutDashboard,
@@ -352,6 +353,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <ScrollToTop />
+            <RouteSeo />
             <ClerkProvider>
                 <Routes>
                     {/* ---- Public site ---- */}
