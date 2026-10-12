@@ -25,7 +25,8 @@ jobs:
           for (const [path, meta] of Object.entries(routes)) {
             if (!meta.index) continue;
             const html = readFileSync('dist' + (path === '/' ? '/index.html' : path + '/index.html'),'utf8');
-            assert.ok(html.includes('<title>' + meta.title + '</title>'), path + ' page title');
+            const escapedTitle = meta.title.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            assert.ok(html.includes('<title>' + escapedTitle + '</title>'), path + ' page title');
             assert.ok(html.includes('content="index,follow,max-image-preview:large"'), path + ' robots');
             assert.ok(html.includes('og-image.png'), path + ' social preview');
             const canonical = 'https://xumai.app' + (path === '/' ? '/' : path + '/');
