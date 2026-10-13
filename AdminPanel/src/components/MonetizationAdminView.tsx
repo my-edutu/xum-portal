@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAuth } from '@clerk/clerk-react';
 import { createMonetizationAdminApi, type MonetizationAdminOverview, type MonetizationAdminDecisions } from '../utils/monetizationAdminService';
+import { QualificationActivationPanel } from './QualificationActivationPanel';
 import { BadgeCheck, Ban, BookOpen, ChevronRight, CircleAlert, ClipboardCheck, Fingerprint, LockKeyhole, ShieldCheck, Wallet } from 'lucide-react';
 
 type Tab = 'eligibility' | 'qualification' | 'financial' | 'launch' | 'verified';
@@ -300,6 +301,10 @@ export function MonetizationAdminView() {
       {active === 'launch' && (
         <div className="space-y-4" role="tabpanel">
           <h2 className="text-xl text-white outfit font-semibold">Integration and launch blockers</h2>
+          <QualificationActivationPanel api={api} overview={overview}
+            onActivated={() => {
+              void api?.getOverview().then(setOverview).catch(() => setOverview(null));
+            }} />
           <p className="text-sm text-slate-400">Items are pending validation in the deployed project; they are not marked complete just because code is merged.</p>
           <div className="rounded-2xl border border-white/10 bg-[#0f172a] divide-y divide-white/10">
             {GATES.map(gate => (
