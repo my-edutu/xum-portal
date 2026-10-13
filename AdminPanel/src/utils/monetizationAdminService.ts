@@ -108,6 +108,30 @@ export function createMonetizationAdminApi(getToken: () => Promise<string | null
       if (error) throw new Error(error.message || 'Unable to load qualification reviews.');
       return parseDecisions(data);
     },
+    /** Two-person activation: this only opens training assessments, not earnings. */
+    async requestQualificationActivation(requestKey: string): Promise<string> {
+      const { data, error } = await client.rpc('admin_request_qualification_activation_v1', {
+        p_request_key: requestKey,
+      });
+      if (error) throw new Error(error.message || 'Unable to request qualification activation.');
+      if (!isRecord(data) || data.state !== 'pending_second_review' ||
+          typeof data.request_id !== 'string') {
+        throw new Error('Unexpected qualification activation response.');
+      }
+      return data.request_id;
+    },
+    /** Independent reviewer required. The backend enforces different actors. */
+    async confirmQualificationActivation(requestId: string): Promise<boolean> {
+      const { data, error } = await client.rpc('admin_confirm_qualification_activation_v1', {
+        p_request_id: requestId,
+      });
+      if (error) throw new Error(error.message || 'Qualification activation denied.');
+      if (!isRecord(data) || data.state !== 'qualification_active' ||
+          data.earnings_enabled !== false || data.withdrawals_enabled !== false) {
+        throw new Error('Activation response did not preserve financial locks.');
+      }
+      return true;
+    },
     /** For verified operators only. API always requires independently granted role. */
     async proposeDraft(proposal: PolicyProposal, requestKey: string): Promise<PolicyMutationResult> {
       const { data, error } = await client.rpc('admin_propose_monetization_policy_v1',
