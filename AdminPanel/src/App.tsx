@@ -24,8 +24,9 @@ import { supabase } from './supabaseClient';
 import { financialService } from './utils/financialService';
 import type { WorkerPayout } from './utils/financialService';
 import { useAdmin } from './contexts/AdminContext';
+import { MonetizationAdminView } from './components/MonetizationAdminView';
 
-type View = 'overview' | 'users' | 'tasks' | 'linguasense' | 'payouts' | 'companies' | 'api_keys' | 'featured_tasks' | 'settings';
+type View = 'monetization' | 'overview' | 'users' | 'tasks' | 'linguasense' | 'payouts' | 'companies' | 'api_keys' | 'featured_tasks' | 'settings';
 
 /**
  * Return the first record from a Supabase relationship, regardless of whether
@@ -1738,6 +1739,7 @@ const Sidebar = ({ activeView, navigateTo, signOut }: any) => (
       
       <p className="text-[10px] text-dim font-black uppercase tracking-[0.2em] mt-8 mb-4 px-4 opacity-50">Platform</p>
       <SidebarLink active={activeView === 'payouts'} onClick={() => navigateTo('payouts')} icon={BarChart3} label="Payments" />
+      <SidebarLink active={activeView === 'monetization'} onClick={() => navigateTo('monetization')} icon={ShieldAlert} label="Monetization" />
       <SidebarLink active={activeView === 'settings'} onClick={() => navigateTo('settings')} icon={Settings} label="Settings" />
     </nav>
 
@@ -1753,7 +1755,7 @@ export default function App() {
   const [activeView, setActiveView] = useState<View>('overview');
   // Keep private admin page titles accurate without exposing them to search engines.
   useEffect(() => {
-    const labels: Record<View, string> = {"overview":"Overview","users":"User Management","tasks":"Task Moderation","linguasense":"Language Data","payouts":"Payouts","companies":"Companies","api_keys":"API Keys","featured_tasks":"Featured Tasks","settings":"Settings"};
+    const labels: Record<View, string> = {"monetization":"Monetization","overview":"Overview","users":"User Management","tasks":"Task Moderation","linguasense":"Language Data","payouts":"Payouts","companies":"Companies","api_keys":"API Keys","featured_tasks":"Featured Tasks","settings":"Settings"};
     document.title = `${labels[activeView]} | XUM AI Admin`;
     let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
     if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
@@ -1764,6 +1766,7 @@ export default function App() {
 
   const getActiveView = () => {
     switch (activeView) {
+      case 'monetization': return <MonetizationAdminView />;
       case 'overview': return <Overview />;
       case 'users': return <UserManagement />;
       case 'tasks': return <TaskManagement />;
