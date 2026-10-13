@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useAuth } from '@clerk/clerk-react';
+import { createMonetizationAdminApi, type MonetizationAdminOverview, type MonetizationAdminDecisions } from '../utils/monetizationAdminService';
 import { BadgeCheck, Ban, BookOpen, ChevronRight, CircleAlert, ClipboardCheck, Fingerprint, LockKeyhole, ShieldCheck, Wallet } from 'lucide-react';
 
-type Tab = 'eligibility' | 'qualification' | 'financial' | 'launch';
+type Tab = 'eligibility' | 'qualification' | 'financial' | 'launch' | 'verified';
 const RULES = [
   { label: 'Minimum age', value: '18+', description: 'Verified age evidence required' },
   { label: 'Email and phone', value: 'Verified', description: 'Not simply typed into a profile' },
@@ -34,10 +36,51 @@ const tabs: { key: Tab; label: string }[] = [
   { key: 'qualification', label: 'Contributor Levels' },
   { key: 'financial', label: 'Financial Controls' },
   { key: 'launch', label: 'Launch Checklist' },
+  { key: 'verified', label: 'Verified Records' },
 ];
 
 export function MonetizationAdminView() {
   const [active, setActive] = useState<Tab>('eligibility');
+  const { getToken, isSignedIn } = useAuth();
+  const api = useMemo(() => createMonetizationAdminApi(() => getToken()), [getToken]);
+  const [overview, setOverview] = useState<MonetizationAdminOverview | null>(null);
+  const [decisions, setDecisions] = useState<MonetizationAdminDecisions | null>(null);
+  const [overviewError, setOverviewError] = useState<string | null>(null);
+  const [decisionsError, setDecisionsError] = useState<string | null>(null);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    let activeRequest = true;
+    if (!isSignedIn || !api) {
+      setChecking(false);
+      setOverview(null);
+      setDecisions(null);
+      setOverviewError('Sign in with an authorized Clerk account and configure Supabase.');
+      setDecisionsError(null);
+      return () => { activeRequest = false; };
+    }
+    setChecking(true);
+    Promise.allSettled([api.getOverview(), api.getRecentDecisions()])
+      .then(([policyResponse, decisionResponse]) => {
+        if (!activeRequest) return;
+        if (policyResponse.status === 'fulfilled') {
+          setOverview(policyResponse.value);
+          setOverviewError(null);
+        } else {
+          setOverview(null);
+          setOverviewError('Policy API unavailable or access not granted to this account.');
+        }
+        if (decisionResponse.status === 'fulfilled') {
+          setDecisions(decisionResponse.value);
+          setDecisionsError(null);
+        } else {
+          setDecisions(null);
+          setDecisionsError('Eligibility review requires a separately granted reviewer permission.');
+        }
+      })
+      .finally(() => { if (activeRequest) setChecking(false); });
+    return () => { activeRequest = false; };
+  }, [api, isSignedIn]);
 
   return (
     <section className="space-y-7" aria-label="Monetization administration">
@@ -67,6 +110,47 @@ export function MonetizationAdminView() {
           </p>
         </div>
       </div>
+
+      <section aria-label="Live policy connection status" className="rounded-2xl border border-white/10 bg-[#0f172a] p-5 space-y-3">
+        <div className="flex flex-wrap gap-2 items-center justify-between">
+          <h2 className="text-base font-bold text-white">Verified policy connection</h2>
+          <span className={`text-xs font-semibold rounded-full px-3 py-1 ${overview ? 'text-emerald-200 bg-emerald-500/10' : 'text-amber-200 bg-amber-500/10'}`}>
+            {checking ? 'Checking server…' : overview ? 'Signed-in access verified' : 'Not connected / not authorized'}
+          </span>
+        </div>
+        {overview ? (
+          <div className="space-y-3">
+            <p className="text-sm text-slate-400">
+              The secured server reported {overview.policies.length} policy version(s).
+              This does not indicate permission to activate earnings.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="text-xs rounded-lg border border-white/10 px-3 py-2 text-slate-300">
+                Identity bridge: {overview.identity_bridge_enabled ? 'Enabled' : 'Off'}
+              </span>
+              <span className="text-xs rounded-lg border border-white/10 px-3 py-2 text-slate-300">
+                Qualification service: {overview.qualification_enabled ? 'Enabled' : 'Off'}
+              </span>
+              <span className="text-xs rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2 text-amber-200">
+                New payout controls: OFF
+              </span>
+            </div>
+            <div className="space-y-2">
+              {overview.policies.slice(0, 5).map(p => (
+                <div key={p.id} className="flex flex-wrap items-center justify-between gap-2 border-t border-white/10 py-2 text-xs text-slate-300">
+                  <span className="font-semibold text-white">{p.policy_key}</span>
+                  <span>{p.country === '*' ? 'Global' : p.country} · {p.status} · {p.minimum_qualification_tasks} tasks · {p.minimum_qualification_accuracy}% accuracy</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-amber-200" role="status">
+            {overviewError ?? 'Loading verified policy versions…'}
+            {' '}Proposed values shown below are guidance only, not live settings.
+          </p>
+        )}
+      </section>
 
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {[
@@ -169,6 +253,47 @@ export function MonetizationAdminView() {
               No controls on this screen can move or reserve money.
             </p>
           </div>
+        </div>
+      )}
+
+      {active === 'verified' && (
+        <div className="space-y-4" role="tabpanel">
+          <h2 className="text-xl font-bold text-white outfit">Qualification decision reviews</h2>
+          <p className="text-sm text-slate-400">
+            Read-only, pseudonymous records from the permissioned backend.
+            Account email, phone, payout identity, and raw fraud evidence are not returned here.
+          </p>
+          {!decisions ? (
+            <div role="status" className="border border-amber-500/20 bg-amber-500/10 rounded-2xl p-5 text-sm text-amber-200">
+              {checking ? 'Loading verified decisions…' : decisionsError ?? 'Reviewer access is not available.'}
+            </div>
+          ) : decisions.decisions.length === 0 ? (
+            <div className="border border-white/10 bg-[#0f172a] rounded-2xl p-5 text-sm text-slate-400">
+              No verified qualification decisions have been recorded through the new program.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {decisions.decisions.map(d => (
+                <article key={d.id} className="rounded-xl border border-white/10 bg-[#0f172a] p-4 space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-semibold text-sm text-white">
+                      Contributor {d.identity_link_id.slice(0, 8)}…
+                    </span>
+                    <span className={`rounded-full px-2 py-1 text-xs font-semibold
+                      ${d.eligibility === 'eligible' ? 'bg-blue-500/10 text-blue-300' : 'bg-slate-700 text-slate-300'}`}>
+                      {d.eligibility === 'eligible' ? 'Eligibility recorded' : 'Not qualified'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400">Assessed {new Date(d.assessed_at).toLocaleString()}</p>
+                  <p className="text-xs text-slate-300">
+                    {d.unmet_requirements.length
+                      ? `Pending: ${d.unmet_requirements.join(', ')}`
+                      : 'All recorded qualification checks passed; payout remains disabled.'}
+                  </p>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
