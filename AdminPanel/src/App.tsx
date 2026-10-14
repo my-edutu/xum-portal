@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SignInButton } from '@clerk/clerk-react';
 import './index.css';
 import {
   LayoutDashboard,
@@ -1802,9 +1803,11 @@ export default function App() {
           </div>
           <h2 className="text-2xl font-bold text-white outfit mb-2">Authentication Required</h2>
           <p className="text-sm text-dim mb-8">Please sign in with an authorized admin account to access the Admin Console.</p>
-          <a href="/admin/login" className="block w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-blue-500/20">
-            Go to Login
-          </a>
+          <SignInButton mode="modal">
+            <button type="button" className="block w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-blue-500/20">
+              Go to Login
+            </button>
+          </SignInButton>
         </div>
       </div>
     );
